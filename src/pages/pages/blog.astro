@@ -31,7 +31,7 @@ const filters = ['All posts', 'Meta Ads', 'Google Ads', 'SEO', 'Email', 'Constru
   <section class="blog-featured">
     <div class="blog-featured-inner">
       <article class="blog-featured-card reveal">
-        <div class="blog-featured-img"></div>
+        <img src={featured.heroImage} alt={featured.title} class="blog-featured-img" loading="lazy" />
         <div class="blog-featured-content">
           <div class="blog-tag">Featured · {featured.category}</div>
           <h2 class="blog-title" set:html={featured.title.replace(/\b(Running|Not Coming)\b/g, '<em>$1</em>')} />
@@ -69,7 +69,7 @@ const filters = ['All posts', 'Meta Ads', 'Google Ads', 'SEO', 'Email', 'Constru
       <div class="blog-list-grid">
         {recentPosts.map((post, i) => (
           <article class={`blog-card reveal ${i % 3 === 1 ? 'reveal-delay-1' : i % 3 === 2 ? 'reveal-delay-2' : ''}`}>
-            <a href={`/pages/blog-posts/${post.slug}.html`}><div class="blog-card-img"></div></a>
+            <a href={`/pages/blog-posts/${post.slug}.html`}><img src={post.heroImage} alt={post.title} class="blog-card-img" loading="lazy" /></a>
             <div class="blog-tag">{post.category}</div>
             <a href={`/pages/blog-posts/${post.slug}.html`}><h3 class="blog-card-title">{post.title}</h3></a>
             <p class="blog-card-excerpt">{post.excerpt}</p>
