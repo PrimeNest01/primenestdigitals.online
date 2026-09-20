@@ -31,16 +31,16 @@
 
 <style is:global>
 .panel-tab{
-  position:fixed;right:-40px;top:50%;transform:translateY(-50%) rotate(-90deg);
-  transform-origin:left center;
+  position:fixed;right:0;top:50%;transform:translateY(-50%) rotate(-90deg);
+  transform-origin:right center;
   background:linear-gradient(135deg,#7C3AED 0%,#A855F7 100%);color:#fff;
-  border:none;padding:10px 18px;border-radius:8px 8px 0 0;
+  border:none;padding:12px 20px;border-radius:8px 0 0 8px;
   font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
   cursor:pointer;z-index:201;
-  box-shadow:0 8px 24px rgba(139,92,246,0.4);
-  transition:right 0.3s,background 0.3s;
+  box-shadow:-4px 0 12px rgba(139,92,246,0.4);
+  transition:padding 0.3s,box-shadow 0.3s;
 }
-.panel-tab:hover{right:-32px}
+.panel-tab:hover{padding:12px 24px;box-shadow:-8px 0 20px rgba(139,92,246,0.5)}
 .panel-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:202;opacity:0;pointer-events:none;transition:opacity 0.3s}
 .panel-overlay.open{opacity:1;pointer-events:auto}
 .slide-panel{
