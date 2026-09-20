@@ -68,7 +68,7 @@ const filters = ['All posts', 'Meta Ads', 'Google Ads', 'SEO', 'Email', 'Constru
       </div>
       <div class="blog-list-grid">
         {recentPosts.map((post, i) => (
-          <article class={`blog-card reveal ${i % 3 === 1 ? 'reveal-delay-1' : i % 3 === 2 ? 'reveal-delay-2' : ''}`}>
+          <article class={`blog-card reveal ${i % 3 === 1 ? 'reveal-delay-1' : i % 3 === 2 ? 'reveal-delay-2' : ''}`} data-category={post.category}>
             <a href={`/pages/blog-posts/${post.slug}.html`}><img src={post.heroImage} alt={post.title} class="blog-card-img" loading="lazy" /></a>
             <div class="blog-tag">{post.category}</div>
             <a href={`/pages/blog-posts/${post.slug}.html`}><h3 class="blog-card-title">{post.title}</h3></a>
@@ -92,4 +92,32 @@ const filters = ['All posts', 'Meta Ads', 'Google Ads', 'SEO', 'Email', 'Constru
       <a href="/pages/contact.html" class="btn btn-primary reveal reveal-delay-3" data-magnetic>Get on the list <span>→</span></a>
     </div>
   </section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    var filters = document.querySelectorAll('.portfolio-filter');
+    var items = document.querySelectorAll('.blog-card');
+
+    filters.forEach(function(filter) {
+      filter.addEventListener('click', function() {
+        var category = this.textContent.trim();
+
+        filters.forEach(function(f) { f.classList.remove('active'); });
+        this.classList.add('active');
+
+        items.forEach(function(item) {
+          var itemCat = item.getAttribute('data-category');
+          if (category === 'All posts' || category === 'All work' || itemCat === category) {
+            item.style.display = '';
+            item.style.opacity = '0';
+            setTimeout(function() { item.style.opacity = '1'; }, 50);
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+
 </BaseLayout>
