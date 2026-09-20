@@ -346,10 +346,72 @@ const fullUrl = siteUrl + (canonical === '/' ? '/' : canonical);
 
       /* ── HAMBURGER ── */
       const hamburger = document.querySelector('.hamburger');
-      hamburger?.addEventListener('click', () => {
+      hamburger?.addEventListener('click', function() {
         hamburger.classList.toggle('active');
-        alert('Mobile drawer would open here in the production build.');
+        var drawer = document.getElementById('mobileMenuDrawer');
+        var overlay = document.getElementById('mobileMenuOverlay');
+        var close = document.getElementById('mobileMenuClose');
+        var isOpen = drawer && drawer.classList.contains('open');
+        if (!isOpen) {
+          if (drawer) drawer.classList.add('open');
+          if (overlay) overlay.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        } else {
+          if (drawer) drawer.classList.remove('open');
+          if (overlay) overlay.classList.remove('open');
+          document.body.style.overflow = '';
+        }
       });
+
+      // Close drawer on overlay click
+      var overlay = document.getElementById('mobileMenuOverlay');
+      if (overlay) {
+        overlay.addEventListener('click', function() {
+          var drawer = document.getElementById('mobileMenuDrawer');
+          if (drawer) drawer.classList.remove('open');
+          overlay.classList.remove('open');
+          hamburger && hamburger.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      }
+
+      // Close drawer on close button
+      var closeBtn = document.getElementById('mobileMenuClose');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+          var drawer = document.getElementById('mobileMenuDrawer');
+          if (drawer) drawer.classList.remove('open');
+          if (overlay) overlay.classList.remove('open');
+          hamburger && hamburger.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      }
+
+      // Close drawer on Escape
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          var drawer = document.getElementById('mobileMenuDrawer');
+          if (drawer && drawer.classList.contains('open')) {
+            drawer.classList.remove('open');
+            if (overlay) overlay.classList.remove('open');
+            hamburger && hamburger.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        }
+      });
+
+      // Close drawer when clicking a link inside it
+      var drawer = document.getElementById('mobileMenuDrawer');
+      if (drawer) {
+        drawer.querySelectorAll('a').forEach(function(link) {
+          link.addEventListener('click', function() {
+            drawer.classList.remove('open');
+            if (overlay) overlay.classList.remove('open');
+            hamburger && hamburger.classList.remove('active');
+            document.body.style.overflow = '';
+          });
+        });
+      }
 
     })();
   </script>
