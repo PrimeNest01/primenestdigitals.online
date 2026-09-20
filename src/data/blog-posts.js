@@ -7,6 +7,7 @@
 export const blogPosts = [
   {
     slug: 'why-your-facebook-ads-are-not-generating-leads',
+    heroImage: '/blog/why-your-facebook-ads-are-not-generating-leads.png',
     title: 'Why Your Facebook Ads Are Running But Your Leads Are Not Coming',
     excerpt: 'If your ads are getting clicks but no leads, the problem isn\'t the ad — it\'s the post-click experience. Here\'s how to diagnose where the funnel is leaking and what to fix first.',
     category: 'Meta Ads',
@@ -86,6 +87,7 @@ export const blogPosts = [
 
   {
     slug: 'google-ads-construction-company-guide',
+    heroImage: '/blog/google-ads-construction-company-guide.png',
     title: 'How to Get Google Ads Working Without Wasting Your Budget',
     excerpt: 'Most construction companies waste 40% of their Google Ads spend on the wrong search intent. Here\'s how to find it and fix it.',
     category: 'Google Ads',
@@ -161,6 +163,7 @@ export const blogPosts = [
 
   {
     slug: 'google-reviews-guide-contractors',
+    heroImage: '/blog/google-reviews-guide-contractors.png',
     title: 'Google Reviews Guide for Contractors',
     excerpt: 'How to ask for, get, and leverage Google reviews as a contractor. The numbers that matter and the cadence that works.',
     category: 'Reputation',
@@ -244,6 +247,7 @@ export const blogPosts = [
 
   {
     slug: 'construction-marketing-mistakes',
+    heroImage: '/blog/construction-marketing-mistakes.png',
     title: 'Construction Marketing Mistakes That Cost You Jobs',
     excerpt: 'The five most common marketing mistakes construction companies make — and the order to fix them in.',
     category: 'Strategy',
@@ -317,6 +321,7 @@ export const blogPosts = [
 
   {
     slug: 'why-construction-companies-rely-on-referrals',
+    heroImage: '/blog/why-construction-companies-rely-on-referrals.png',
     title: 'Why Construction Companies Rely on Referrals (And How to Keep It)',
     excerpt: 'Referrals are the strongest channel in construction. Here\'s how to engineer a referral machine that doesn\'t depend on luck.',
     category: 'Strategy',
@@ -403,6 +408,7 @@ export const blogPosts = [
 
   {
     slug: 'roofing-company-sales-funnel',
+    heroImage: '/blog/roofing-company-sales-funnel.png',
     title: 'Roofing Company Sales Funnel — A Complete Build',
     excerpt: 'Step-by-step breakdown of the sales funnel we built for a Victoria, BC roofing company — from ad click to closed contract.',
     category: 'Funnels',
@@ -527,6 +533,7 @@ export const blogPosts = [
 
   {
     slug: 'how-to-stop-losing-clients-to-competitors-with-worse-products',
+    heroImage: '/blog/how-to-stop-losing-clients-to-competitors-with-worse-products.png',
     title: 'How to Stop Losing Clients to Competitors With Worse Products',
     excerpt: 'If you\'re losing deals to competitors who have a worse product, the problem is positioning and trust. Here\'s the fix.',
     category: 'Strategy',
@@ -638,6 +645,7 @@ export const blogPosts = [
 
   {
     slug: 'instagram-lead-generation-construction',
+    heroImage: '/blog/instagram-lead-generation-construction.png',
     title: 'Instagram Lead Generation for Construction Companies',
     excerpt: 'How to use Instagram to generate actual leads — not just likes. The content cadence, the CTA structure, the conversion path.',
     category: 'Social Media',
@@ -742,6 +750,7 @@ export const blogPosts = [
 
   {
     slug: 'klaviyo-ecommerce-email-revenue',
+    heroImage: '/blog/klaviyo-ecommerce-email-revenue.png',
     title: 'Klaviyo Email Revenue for Ecommerce — A Complete Guide',
     excerpt: 'The five flows that drive 80% of email revenue. Setup instructions, copy templates, segmentation logic.',
     category: 'Email',
@@ -867,6 +876,7 @@ export const blogPosts = [
 
   {
     slug: 'facebook-ads-home-service-businesses',
+    heroImage: '/blog/facebook-ads-home-service-businesses.png',
     title: 'Facebook Ads for Home Service Businesses — A Field Guide',
     excerpt: 'The ad structure, the audience layering, and the creative that actually works for home service businesses on Facebook.',
     category: 'Meta Ads',
@@ -975,6 +985,7 @@ export const blogPosts = [
 
   {
     slug: 'construction-website-what-you-need',
+    heroImage: '/blog/construction-website-what-you-need.png',
     title: 'Construction Website — What You Need (and What You Don\'t)',
     excerpt: 'A construction company website doesn\'t need every feature. Here\'s what actually moves the needle and what to skip.',
     category: 'Web Design',
@@ -1095,6 +1106,7 @@ export const blogPosts = [
 
   {
     slug: 'local-seo-contractors-2025',
+    heroImage: '/blog/local-seo-contractors-2025.png',
     title: 'Local SEO: How to Dominate Google Search in Your City',
     excerpt: 'The complete local SEO playbook for contractors and service businesses. From Google Business Profile to citation building to reviews.',
     category: 'SEO',
