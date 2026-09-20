@@ -7,36 +7,36 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const projects = [
-  { num: '01', cat: 'Meta Ads', title: 'Skincare · $526K Revenue', meta: '6mo · 12.87X ROAS · US/CA/UK' },
-  { num: '02', cat: 'Web Design', title: 'Mrozinski Construction', meta: 'WordPress · Victoria, BC' },
-  { num: '03', cat: 'Email', title: 'Polished London · Email', meta: 'Klaviyo · UK Beauty' },
-  { num: '04', cat: 'Automation', title: 'GHL AI Lead Qualification', meta: 'Real Estate · ChatGPT + GHL' },
-  { num: '05', cat: 'Google Ads', title: 'Fitness Equipment · Search', meta: 'Search + Shopping · US' },
-  { num: '06', cat: 'Funnels', title: 'Roofing Company · Funnel', meta: 'Victoria, BC · End-to-end' },
-  { num: '07', cat: 'Meta Ads', title: 'Beauty Launch · Campaign', meta: '8wk · 4.2X ROAS · UK' },
-  { num: '08', cat: 'SEO', title: 'Contractor Local SEO', meta: 'Local · Texas · 6mo' },
-  { num: '09', cat: 'Email', title: 'Budpop · Email Design', meta: 'Klaviyo flows · US' },
-  { num: '10', cat: 'Web Design', title: 'Glowdla Skincare · Shopify', meta: 'Full store build · US' },
-  { num: '11', cat: 'Meta Ads', title: 'Clevr · Email + Performance', meta: 'Email + Meta Ads · UK' },
-  { num: '12', cat: 'Automation', title: 'Missed Call Text-Back', meta: 'Service business · US' },
-  { num: '13', cat: 'Meta Ads', title: 'Home Service · Lead Gen', meta: 'Facebook Ads · US' },
-  { num: '14', cat: 'Google Ads', title: 'Construction · Search', meta: 'Search · BC · 4mo' },
-  { num: '15', cat: 'Funnels', title: 'Service Business Funnel', meta: 'End-to-end · Texas' },
-  { num: '16', cat: 'Email', title: 'Ecommerce Email Flows', meta: 'Klaviyo · 5 flows · US' },
-  { num: '17', cat: 'SEO', title: 'Local SEO · Ecommerce', meta: 'Local · UK · 8mo' },
-  { num: '18', cat: 'Web Design', title: 'Service Business · WP', meta: 'WordPress · US' },
-  { num: '19', cat: 'Automation', title: 'CRM + AI Pipeline', meta: 'GHL + ChatGPT · CA' },
-  { num: '20', cat: 'Meta Ads', title: 'Skincare · Retargeting', meta: 'Retargeting · UK' },
-  { num: '21', cat: 'Google Ads', title: 'Service Business · Search', meta: 'Search · US' },
-  { num: '22', cat: 'Email', title: 'Beauty Launch Email', meta: '3 flows · UK' },
-  { num: '23', cat: 'Funnels', title: 'Tripwire Sequence', meta: 'Ecommerce · US' },
-  { num: '24', cat: 'Web Design', title: 'Shopify Store · Beauty', meta: 'Full store · UK' },
-  { num: '25', cat: 'SEO', title: 'Content + Links · B2B', meta: 'Content · US · 6mo' },
-  { num: '26', cat: 'Automation', title: 'Calendar Booking Pipeline', meta: 'GHL · CA' },
-  { num: '27', cat: 'Meta Ads', title: 'Beauty · UGC Campaign', meta: 'UGC + Meta · US' },
-  { num: '28', cat: 'Google Ads', title: 'Performance Max · Skincare', meta: 'PMax · US' },
-  { num: '29', cat: 'Email', title: 'Cart Recovery · Beauty', meta: '4-email flow · UK' },
-  { num: '30', cat: 'Funnels', title: 'Upsell Sequence · Ecom', meta: 'Ecommerce · CA' },
+  { num: '01', behance: 'https://www.behance.net/gallery/252115709/website-design-for-JDG-Constructions', cat: 'Meta Ads', title: 'Skincare · $526K Revenue', meta: '6mo · 12.87X ROAS · US/CA/UK' },
+  { num: '02', behance: 'https://www.behance.net/gallery/252116043/Wordpress-Website-Design-for-Snyder-Construction-Group', cat: 'Web Design', title: 'Mrozinski Construction', meta: 'WordPress · Victoria, BC' },
+  { num: '03', behance: 'https://www.behance.net/gallery/252116239/wordpress-website-design-for-GM-Construction', cat: 'Email', title: 'Polished London · Email', meta: 'Klaviyo · UK Beauty' },
+  { num: '04', behance: 'https://www.behance.net/gallery/252116489/Website-design-for-WS-Cumby-Construction', cat: 'Automation', title: 'GHL AI Lead Qualification', meta: 'Real Estate · ChatGPT + GHL' },
+  { num: '05', behance: 'https://www.behance.net/gallery/252116601/Construction-Website-design-for-Mrozinski-Construction', cat: 'Google Ads', title: 'Fitness Equipment · Search', meta: 'Search + Shopping · US' },
+  { num: '06', behance: 'https://www.behance.net/gallery/252215355/Gohigh-Level-Ai-Automation', cat: 'Funnels', title: 'Roofing Company · Funnel', meta: 'Victoria, BC · End-to-end' },
+  { num: '07', behance: 'https://www.behance.net/gallery/252215555/GOHIGHLEVEL-SAAS-FUNNEL', cat: 'Meta Ads', title: 'Beauty Launch · Campaign', meta: '8wk · 4.2X ROAS · UK' },
+  { num: '08', behance: 'https://www.behance.net/gallery/252215785/Klaviyo-email-automation', cat: 'SEO', title: 'Contractor Local SEO', meta: 'Local · Texas · 6mo' },
+  { num: '09', behance: 'https://www.behance.net/gallery/252216069/Abandon-Cart-Sequence-Klaviyo', cat: 'Email', title: 'Budpop · Email Design', meta: 'Klaviyo flows · US' },
+  { num: '10', behance: 'https://www.behance.net/gallery/252216293/Shopfy-Store-Design', cat: 'Web Design', title: 'Glowdla Skincare · Shopify', meta: 'Full store build · US' },
+  { num: '11', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'Meta Ads', title: 'Clevr · Email + Performance', meta: 'Email + Meta Ads · UK' },
+  { num: '12', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'Automation', title: 'Missed Call Text-Back', meta: 'Service business · US' },
+  { num: '13', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'Meta Ads', title: 'Home Service · Lead Gen', meta: 'Facebook Ads · US' },
+  { num: '14', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'Google Ads', title: 'Construction · Search', meta: 'Search · BC · 4mo' },
+  { num: '15', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'Funnels', title: 'Service Business Funnel', meta: 'End-to-end · Texas' },
+  { num: '16', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'Email', title: 'Ecommerce Email Flows', meta: 'Klaviyo · 5 flows · US' },
+  { num: '17', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'SEO', title: 'Local SEO · Ecommerce', meta: 'Local · UK · 8mo' },
+  { num: '18', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'Web Design', title: 'Service Business · WP', meta: 'WordPress · US' },
+  { num: '19', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'Automation', title: 'CRM + AI Pipeline', meta: 'GHL + ChatGPT · CA' },
+  { num: '20', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'Meta Ads', title: 'Skincare · Retargeting', meta: 'Retargeting · UK' },
+  { num: '21', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'Google Ads', title: 'Service Business · Search', meta: 'Search · US' },
+  { num: '22', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'Email', title: 'Beauty Launch Email', meta: '3 flows · UK' },
+  { num: '23', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'Funnels', title: 'Tripwire Sequence', meta: 'Ecommerce · US' },
+  { num: '24', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'Web Design', title: 'Shopify Store · Beauty', meta: 'Full store · UK' },
+  { num: '25', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'SEO', title: 'Content + Links · B2B', meta: 'Content · US · 6mo' },
+  { num: '26', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'Automation', title: 'Calendar Booking Pipeline', meta: 'GHL · CA' },
+  { num: '27', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'Meta Ads', title: 'Beauty · UGC Campaign', meta: 'UGC + Meta · US' },
+  { num: '28', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'Google Ads', title: 'Performance Max · Skincare', meta: 'PMax · US' },
+  { num: '29', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'Email', title: 'Cart Recovery · Beauty', meta: '4-email flow · UK' },
+  { num: '30', behance: 'https://www.behance.net/garubahazeem-digital', cat: 'Funnels', title: 'Upsell Sequence · Ecom', meta: 'Ecommerce · CA' },
 ];
 
 const filters = ['All work', 'Meta Ads', 'Google Ads', 'Email', 'Web Design', 'Funnels', 'SEO', 'Automation'];
@@ -77,8 +77,9 @@ const filters = ['All work', 'Meta Ads', 'Google Ads', 'Email', 'Web Design', 'F
             <div class="portfolio-thumb-num">{p.num}</div>
           </div>
           <div class="portfolio-body">
-            <h3 class="portfolio-title">{p.title}</h3>
+            <h3 class="portfolio-title"><a href={p.behance} target="_blank" rel="noopener">{p.title}</a></h3>
             <div class="portfolio-meta">{p.meta}</div>
+            <a href={p.behance} target="_blank" rel="noopener" class="portfolio-behance-link">View on Behance →</a>
           </div>
         </article>
       ))}
