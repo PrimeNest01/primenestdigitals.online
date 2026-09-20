@@ -221,6 +221,8 @@ document.addEventListener('DOMContentLoaded',function(){
   }
 
   /* ── TICKER DUPLICATE ── */
+  var strip=document.querySelector('.stats-strip-track');
+  if(strip){var sc=strip.cloneNode(true);strip.parentNode.appendChild(sc);}
   var track=document.querySelector('.ticker-track');
   if(track){var clone=track.cloneNode(true);track.parentNode.appendChild(clone);}
 
