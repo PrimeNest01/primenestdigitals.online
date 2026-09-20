@@ -175,13 +175,13 @@ const fullUrl = siteUrl + (canonical === '/' ? '/' : canonical);
       function initHeroReveal() {
         const heroTitle = document.getElementById('heroTitle');
         if (!heroTitle) return;
-        const text = 'Revenue systems for serious operators.';
+        const text = 'Predictable revenue. Not side hustles.';
         const words = text.split(/(\s+)/);
         let html = '';
         words.forEach(w => {
           if (w.trim() === '') {
             html += w;
-          } else if (w === 'serious' || w === 'operators.') {
+          } else if (w === 'Predictable' || w === 'Not') {
             html += `<em class="word">${w}</em> `;
           } else {
             html += `<span class="word">${w}</span> `;
