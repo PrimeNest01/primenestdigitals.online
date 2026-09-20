@@ -70,7 +70,7 @@ const filters = ['All work', 'Meta Ads', 'Google Ads', 'Email', 'Web Design', 'F
   <section style="padding:0">
     <div class="portfolio-grid">
       {projects.map(p => (
-        <article class="portfolio-item">
+        <article class="portfolio-item" data-category={p.cat}>
           <div class="portfolio-thumb"><img src={`/portfolio/${p.num}.${p.num === "01" ? "png" : "jpg"}`} alt={p.title} class="portfolio-thumb-img" loading="lazy" />
             <div class="portfolio-thumb-cat">{p.cat}</div>
             <div class="portfolio-thumb-r">R</div>
@@ -94,6 +94,36 @@ const filters = ['All work', 'Meta Ads', 'Google Ads', 'Email', 'Web Design', 'F
       <a href="/pages/contact.html" class="btn btn-primary reveal reveal-delay-3" data-magnetic>Book the call <span>→</span></a>
     </div>
   </section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    var filters = document.querySelectorAll('.portfolio-filter');
+    var items = document.querySelectorAll('.portfolio-item');
+
+    filters.forEach(function(filter) {
+      filter.addEventListener('click', function() {
+        var category = this.textContent.trim();
+
+        // Update active state
+        filters.forEach(function(f) { f.classList.remove('active'); });
+        this.classList.add('active');
+
+        // Filter items
+        items.forEach(function(item) {
+          var itemCat = item.getAttribute('data-category');
+          if (category === 'All work' || category === 'All posts' || itemCat === category) {
+            item.style.display = '';
+            item.style.opacity = '0';
+            setTimeout(function() { item.style.opacity = '1'; }, 50);
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+
 </BaseLayout>
 
 
