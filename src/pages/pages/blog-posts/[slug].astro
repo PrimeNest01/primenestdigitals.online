@@ -39,6 +39,7 @@ const related = getRelatedPosts(post.slug, 3);
         <span>{post.publishedAt}</span>
       </div>
     </div>
+    <img src={post.heroImage} alt={post.title} class="post-hero-image" loading="eager" />
   </section>
 
   <section class="post-body">
