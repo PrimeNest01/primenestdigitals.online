@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /netlify/
+
+Sitemap: https://primenestdigitals.online/sitemap.xml
+
+# PrimeNest Digitals
+# primenestdigitals.online

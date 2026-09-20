@@ -1,0 +1,159 @@
+---
+// ============================================================
+// Service Detail — /pages/services/[slug]/index.html (× 9)
+// Uses services.js data — one template for all 9 services
+// ============================================================
+
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { services, getService } from '../../../../data/services.js';
+
+export function getStaticPaths() {
+  return services.map(service => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const relatedServices = service.relatedServices
+  .map(slug => getService(slug))
+  .filter(Boolean);
+---
+
+<BaseLayout
+  title={`${service.name} — PrimeNest Digitals`}
+  description={service.shortDescription}
+  activePage="services"
+>
+  <section class="page-hero">
+    <div class="page-hero-grid">
+      <div>
+        <div class="breadcrumbs">
+          <a href="/">Home</a><span class="sep">/</span>
+          <a href="/pages/services.html">Services</a><span class="sep">/</span>
+          <span>{service.name}</span>
+        </div>
+        <h1 class="page-hero-title" set:html={service.tagline} />
+      </div>
+      <div class="page-hero-meta">
+        <p>{service.shortDescription}</p>
+        <div class="hero-actions" style="margin-top:8px">
+          <a href="/pages/contact.html" class="btn btn-primary" data-magnetic>Get a free audit <span>→</span></a>
+          <a href="#deliverables" class="btn btn-ghost" data-magnetic>See deliverables</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="sd-nav">
+    <div class="sd-nav-inner">
+      <a href="#overview">Overview</a>
+      <a href="#deliverables">Deliverables</a>
+      <a href="#process">Process</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#related">Related services</a>
+    </div>
+  </nav>
+
+  <section class="sd-sections">
+    <div class="sd-sections-inner">
+      <aside class="sd-sticky-toc">
+        <h5>On this page</h5>
+        <ol>
+          <li><a href="#overview"><span class="num">01</span> Overview</a></li>
+          <li><a href="#deliverables"><span class="num">02</span> Deliverables</a></li>
+          <li><a href="#process"><span class="num">03</span> Process</a></li>
+          <li><a href="#pricing"><span class="num">04</span> Pricing</a></li>
+          <li><a href="#faq"><span class="num">05</span> FAQ</a></li>
+          <li><a href="#related"><span class="num">06</span> Related services</a></li>
+        </ol>
+      </aside>
+
+      <div class="sd-content">
+        <div class="sd-block" id="overview">
+          <div><div class="sd-block-label">01 · Overview</div></div>
+          <div>
+            <h2 class="sd-block-title">The <em>mechanism</em> behind the work.</h2>
+            <div class="sd-block-body">
+              <p>{service.longDescription}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sd-block" id="deliverables">
+          <div><div class="sd-block-label">02 · Deliverables</div></div>
+          <div>
+            <h2 class="sd-block-title">What you <em>actually get</em>.</h2>
+            <div class="sd-block-body">
+              <p>No vague "strategy sessions" or "creative direction." Here's the concrete list of what ships when you engage us for {service.name.toLowerCase()}:</p>
+              <div class="sd-deliverables">
+                {service.deliverables.map(d => <div class="sd-deliverable">{d}</div>)}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sd-block" id="process">
+          <div><div class="sd-block-label">03 · Process</div></div>
+          <div>
+            <h2 class="sd-block-title">How we build the <em>mechanism</em>.</h2>
+            <div class="sd-block-body">
+              {service.process.map(p => (
+                <p><strong>{p.week} — {p.title}.</strong> {p.body}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="sd-block" id="pricing">
+          <div><div class="sd-block-label">04 · Pricing</div></div>
+          <div>
+            <h2 class="sd-block-title">Transparent. <em>No surprises</em>.</h2>
+            <div class="sd-block-body">
+              <p>Two retainer structures, depending on your budget and the complexity of your stack:</p>
+              {service.pricing.map(p => (
+                <p><strong>{p.tier}</strong> — {p.price}. {p.bestFor}</p>
+              ))}
+              <p>Above $150K/month spend we work on a custom structure. The first call is free, and you'll know by minute 15 whether we're a fit.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sd-block" id="faq">
+          <div><div class="sd-block-label">05 · FAQ</div></div>
+          <div>
+            <h2 class="sd-block-title">The questions <em>everyone asks</em>.</h2>
+            <div class="sd-block-body">
+              {service.faq.map(item => (
+                <p><strong>{item.q}</strong> {item.a}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="sd-block" id="related">
+          <div><div class="sd-block-label">06 · Related services</div></div>
+          <div>
+            <h2 class="sd-block-title">Pairs well <em>with</em>.</h2>
+            <div class="sd-block-body">
+              <p>{service.name} rarely runs alone. Most clients engage us across two or three of these:</p>
+              <ul class="service-list" style="margin-top:16px">
+                {relatedServices.map(related => (
+                  <li><a href={`/pages/services/${related.slug}/index.html`}>{related.name}</a> — {related.shortDescription.split('.')[0]}.</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sd-cta">
+    <div class="sd-cta-inner">
+      <h3>Ready for a <em>working {service.name.toLowerCase()}</em>?</h3>
+      <a href="/pages/contact.html" class="btn btn-primary" data-magnetic>Book a free audit <span>→</span></a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,132 @@
+---
+// ============================================================
+// Privacy Policy — /pages/privacy.html
+// Same template serves Terms of Service (with different content)
+// ============================================================
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const sections = [
+  {
+    num: '01', title: 'What we collect',
+    paras: ['We collect the minimum data needed to operate as a marketing services studio. There are three categories:'],
+    sub: [
+      { h: 'Information you give us directly', items: ['Name, email, phone number, company name — when you fill out the contact form or book a call', 'Industry, monthly ad spend — when you tell us, so we can scope the work properly', 'Message content — whatever you choose to write to us'] },
+      { h: 'Information collected automatically', items: ['IP address, browser type, device type — collected via standard server logs', 'Pages visited, time on page, referral source — via privacy-friendly analytics', 'Cookie identifier — for repeat visits (see section 5)'] },
+      { h: 'Information from your marketing accounts (clients only)', items: ['Read-only access to Meta Ads, Google Ads, Klaviyo, Google Analytics — for clients who engage us', 'We do not modify billing or payment information', 'Access is revoked within 30 days of contract end'] },
+    ],
+  },
+  {
+    num: '02', title: 'Why we collect it',
+    paras: ['We use your data for exactly three purposes:'],
+    items: [
+      'To respond to your enquiry. If you fill the contact form, we use your email and message to reply.',
+      'To deliver services you\'ve engaged us for. If you become a client, we use your account access to do the work.',
+      'To improve the website. Aggregate, anonymised analytics help us understand which pages work and which don\'t.',
+    ],
+    extraParas: ['We do not:'],
+    extraItems: ['Sell your data to third parties. Ever.', 'Use your data to train AI models.', 'Send marketing emails unless you\'ve explicitly opted in.'],
+  },
+  {
+    num: '03', title: 'How long we keep it',
+    paras: ['Retention periods are:'],
+    items: [
+      'Contact form enquiries: 24 months from last contact, then deleted',
+      'Client account access: Revoked within 30 days of contract end; logged activity retained for 7 years for tax/audit purposes',
+      'Website analytics: 26 months rolling, then aggregated and the raw data deleted',
+      'Email correspondence: Retained as long as you remain on our email list; deleted on request',
+    ],
+  },
+  {
+    num: '04', title: 'Who we share it with',
+    paras: ['We share data with the minimum number of processors needed to operate:'],
+    items: [
+      'Hosting: GitHub Pages (this website)',
+      'Email: Our email provider, to deliver replies to your enquiry',
+      'Calendly / booking tool: If you book a call directly',
+      'Analytics: A privacy-friendly analytics provider (no Google Analytics)',
+    ],
+    extraParas: ['We do not share data with advertising networks, data brokers, or any third party for marketing purposes.'],
+  },
+  {
+    num: '05', title: 'Cookies & tracking',
+    paras: ['This website uses the following cookies:'],
+    items: [
+      'Theme preference: Stores whether you\'ve chosen dark or light mode',
+      'Session storage: Whether you\'ve seen the opening animation this session',
+      'Analytics cookie: An anonymous identifier to count unique visitors',
+    ],
+    extraParas: ['We do not use advertising cookies, retargeting pixels, or cross-site tracking. You can clear cookies at any time via your browser settings.'],
+  },
+  {
+    num: '06', title: 'Your rights',
+    paras: ['Depending on your jurisdiction (GDPR, CCPA, or other), you have rights over your personal data:'],
+    items: [
+      'Access: Request a copy of the data we hold about you',
+      'Correction: Ask us to fix inaccurate data',
+      'Deletion: Request that we delete your data (subject to legal retention requirements)',
+      'Opt-out: Unsubscribe from any email list at any time',
+      'Data portability: Request your data in a machine-readable format',
+    ],
+    extraParas: ['To exercise any of these rights, email privacy@primenestdigitals.online. We respond inside 30 days.'],
+  },
+  {
+    num: '07', title: 'Third-party tools',
+    paras: ['This website may link to or integrate with:'],
+    items: ['Behance — for portfolio verification', 'Calendly — for booking calls', 'WhatsApp — for direct messaging', 'LinkedIn, Instagram — for founder social profiles'],
+    extraParas: ['Each of these has its own privacy policy. We encourage you to read them.'],
+  },
+  {
+    num: '08', title: 'Contact us',
+    paras: ['For any privacy questions or requests:'],
+    items: ['Email: privacy@primenestdigitals.online', 'General enquiries: hello@primenestdigitals.online'],
+    extraParas: ['We will respond inside 30 days, weekdays.'],
+  },
+];
+---
+
+<BaseLayout
+  title="Privacy Policy — PrimeNest Digitals"
+  description="Privacy Policy for PrimeNest Digitals. What we collect, why we collect it, and how to opt out."
+  activePage=""
+>
+  <section class="page-hero" style="border-bottom:1px solid var(--line)">
+    <div class="page-hero-grid">
+      <div>
+        <div class="breadcrumbs"><a href="/">Home</a><span class="sep">/</span><span>Privacy</span></div>
+        <h1 class="page-hero-title">Privacy <em>Policy</em>.</h1>
+      </div>
+      <div class="page-hero-meta">
+        <p>Last updated: September 19, 2026. Plain-language version of what we collect, why we collect it, and how to make it stop.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="legal">
+    <div class="legal-inner">
+      <div class="legal-toc">
+        <h5>On this page</h5>
+        <ol>
+          {sections.map(s => (
+            <li><a href={`#s${s.num}`}>{s.num}. {s.title}</a></li>
+          ))}
+        </ol>
+      </div>
+      {sections.map(s => (
+        <div class="legal-section" id={`s${s.num}`}>
+          <h2><span class="num">{s.num}</span> {s.title}</h2>
+          {s.paras?.map(p => <p>{p}</p>)}
+          {s.sub?.map(sub => (
+            <Fragment>
+              <h3>{sub.h}</h3>
+              <ul>{sub.items.map(item => <li>{item}</li>)}</ul>
+            </Fragment>
+          ))}
+          {s.items && <ul>{s.items.map(item => <li>{item}</li>)}</ul>}
+          {s.extraParas?.map(p => <p>{p}</p>)}
+          {s.extraItems && <ul>{s.extraItems.map(item => <li>{item}</li>)}</ul>}
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

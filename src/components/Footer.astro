@@ -1,0 +1,76 @@
+---
+// ============================================================
+// Footer — shared footer with R mark watermark + 4 columns
+// ============================================================
+
+import RMark from './RMark.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <RMark size="lg" className="r-watermark" />
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand-block">
+        <div class="footer-brand-mark">
+          <RMark size="md" />
+          <span>PRIMENEST<br><span class="sub">DIGITALS</span></span>
+        </div>
+        <p class="footer-brand-blurb">
+          Marketing with a mechanism. A focused digital studio building revenue
+          systems for construction, ecommerce, and service businesses across
+          the US, Canada, and the UK.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="/pages/about.html">About</a></li>
+          <li><a href="/pages/contact.html">Contact</a></li>
+          <li><a href="/pages/portfolio.html">Portfolio</a></li>
+          <li><a href="/pages/blog.html">Journal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/pages/services/meta-ads/index.html">Meta Ads</a></li>
+          <li><a href="/pages/services/google-ads/index.html">Google Ads</a></li>
+          <li><a href="/pages/services/seo/index.html">SEO</a></li>
+          <li><a href="/pages/services/website-design/index.html">Web Design</a></li>
+          <li><a href="/pages/services.html">All services →</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Elsewhere</h4>
+        <ul>
+          <li><a href="https://www.behance.net/" target="_blank" rel="noopener">Behance</a></li>
+          <li><a href="https://go.primenestdigitals.online/book-a-strategic-call" target="_blank" rel="noopener">Book a call</a></li>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© {year} PrimeNest Digitals · Marketing with a mechanism</div>
+      <div class="footer-legal">
+        <a href="/pages/privacy.html">Privacy</a>
+        <a href="/pages/terms.html">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style is:global>
+.r-watermark{
+  position:absolute;
+  bottom:-40px;
+  right:-20px;
+  width:280px;
+  height:280px;
+  opacity:0.04;
+  pointer-events:none;
+  z-index:0;
+}
+.r-watermark::after{font-size:200px !important}
+</style>

@@ -1,0 +1,360 @@
+---
+// ============================================================
+// BaseLayout — HTML shell used by every page
+// Handles: <head>, fonts, global CSS, grain, cursor, header, footer, preloader, scripts
+// ============================================================
+
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MechanismPreloader from '../components/MechanismPreloader.astro';
+
+const {
+  title = 'PrimeNest Digitals — Marketing With a Mechanism',
+  description = 'PrimeNest Digitals helps businesses grow with expert marketing automations, funnel design, and reputation management. Marketing with a mechanism.',
+  activePage = '',
+  showPreloader = false,
+  ogImage = '/android-chrome-512x512.png',
+  canonical = Astro.url.pathname,
+} = Astro.props;
+
+const siteUrl = 'https://primenestdigitals.online';
+const fullUrl = siteUrl + (canonical === '/' ? '/' : canonical);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={fullUrl} />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={siteUrl + ogImage} />
+  <meta property="og:url" content={fullUrl} />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={siteUrl + ogImage} />
+
+  <!-- Theme color (unified to brand purple, matches manifest) -->
+  <meta name="theme-color" content="#8B5CF6" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon-32x32.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- JSON-LD Organization -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'PrimeNest Digitals',
+    url: siteUrl,
+    logo: siteUrl + '/android-chrome-512x512.png',
+    description: 'Marketing with a mechanism. Digital marketing studio building revenue systems for construction, ecommerce, and service businesses.',
+    founder: {
+      '@type': 'Person',
+      name: 'Hazeem Garuba',
+      jobTitle: 'Founder · Lead Strategist',
+    },
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'US',
+    },
+    sameAs: [
+      'https://www.linkedin.com/',
+      'https://www.instagram.com/',
+      'https://www.behance.net/',
+    ],
+  })} />
+</head>
+<body>
+  <!-- Custom cursor -->
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- Grain texture -->
+  <div class="grain"></div>
+
+  <!-- Page transition overlay -->
+  <div class="page-transition" id="pageTransition"></div>
+
+  <!-- Mechanism preloader (only on home, only on first visit) -->
+  {showPreloader && <MechanismPreloader />}
+
+  <!-- Skip link for screen readers -->
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- Header -->
+  <Header activePage={activePage} />
+
+  <!-- Main content -->
+  <main id="main">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <Footer />
+
+  <!-- Prototype banner (remove in production) -->
+  <div class="proto-banner">
+    PROTOTYPE · Astro build · In production at <a href={fullUrl}>{fullUrl}</a>
+  </div>
+
+  <!-- Interactions -->
+  <script>
+    // ============================================================
+    // PRIMENEST DIGITALS v2 — Interactions + Mechanism Animation
+    // ============================================================
+
+    (function(){
+
+      /* ── MECHANISM PRELOADER (first visit only) ── */
+      const preloader = document.getElementById('preloader');
+      const isReturning = sessionStorage.getItem('pn_visited');
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (preloader && !isReturning && !prefersReduced) {
+        sessionStorage.setItem('pn_visited', '1');
+        document.body.style.overflow = 'hidden';
+
+        const wire = document.getElementById('preWireframe');
+        if (wire) {
+          const dots = [
+            {x:170,y:170,delay:0.2},{x:120,y:120,delay:0.3},{x:220,y:120,delay:0.4},
+            {x:90,y:170,delay:0.5},{x:250,y:170,delay:0.6},{x:120,y:220,delay:0.7},
+            {x:220,y:220,delay:0.8},{x:170,y:240,delay:0.9}
+          ];
+          const lines = [
+            {from:0,to:1,delay:0.4},{from:0,to:2,delay:0.5},{from:0,to:3,delay:0.6},
+            {from:0,to:4,delay:0.7},{from:0,to:5,delay:0.8},{from:0,to:6,delay:0.9},
+            {from:0,to:7,delay:1.0}
+          ];
+          let svg = '<svg viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg">';
+          lines.forEach((l) => {
+            const a = dots[l.from], b = dots[l.to];
+            svg += `<line class="wire-line" x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" style="animation-delay:${l.delay}s"/>`;
+          });
+          dots.forEach((d) => {
+            svg += `<circle class="wire-dot" cx="${d.x}" cy="${d.y}" r="3" style="animation-delay:${d.delay}s"/>`;
+          });
+          svg += '</svg>';
+          wire.innerHTML = svg;
+        }
+
+        const wordmark = document.getElementById('preWordmark');
+        if (wordmark) {
+          const word = 'PRIMENEST DIGITALS';
+          wordmark.innerHTML = word.split('').map((ch, i) =>
+            `<span style="animation-delay:${2.5 + i * 0.04}s">${ch === ' ' ? '&nbsp;' : ch}</span>`
+          ).join('');
+        }
+
+        setTimeout(() => {
+          preloader.classList.add('done');
+          document.body.style.overflow = 'auto';
+          setTimeout(initHeroReveal, 400);
+        }, 3600);
+      } else if (preloader) {
+        preloader.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        setTimeout(initHeroReveal, 100);
+      }
+
+      function initHeroReveal() {
+        const heroTitle = document.getElementById('heroTitle');
+        if (!heroTitle) return;
+        const text = 'Revenue systems for serious operators.';
+        const words = text.split(/(\s+)/);
+        let html = '';
+        words.forEach(w => {
+          if (w.trim() === '') {
+            html += w;
+          } else if (w === 'serious' || w === 'operators.') {
+            html += `<em class="word">${w}</em> `;
+          } else {
+            html += `<span class="word">${w}</span> `;
+          }
+        });
+        heroTitle.innerHTML = html;
+
+        const style = document.createElement('style');
+        style.textContent = `
+          .hero-title .word{display:inline-block;opacity:0;transform:translateY(40px);transition:opacity 0.7s,transform 0.7s;transition-timing-function:cubic-bezier(0.22,1,0.36,1)}
+          .hero-title .word.in{opacity:1;transform:translateY(0)}
+          .hero-title em.word{font-style:italic;color:#8B5CF6;font-variation-settings:'opsz' 144}
+        `;
+        document.head.appendChild(style);
+
+        const wordEls = heroTitle.querySelectorAll('.word');
+        wordEls.forEach((w, i) => {
+          setTimeout(() => w.classList.add('in'), 80 * i);
+        });
+      }
+
+      /* ── CUSTOM CURSOR ── */
+      const dot = document.getElementById('cursorDot');
+      const ring = document.getElementById('cursorRing');
+      let mouseX = 0, mouseY = 0;
+      let ringX = 0, ringY = 0;
+
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        document.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          if (dot) dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+        });
+        function animateRing() {
+          ringX += (mouseX - ringX) * 0.18;
+          ringY += (mouseY - ringY) * 0.18;
+          if (ring) ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+          requestAnimationFrame(animateRing);
+        }
+        animateRing();
+        document.querySelectorAll('a, button, [data-magnetic], [data-tilt]').forEach(el => {
+          el.addEventListener('mouseenter', () => ring && ring.classList.add('hover'));
+          el.addEventListener('mouseleave', () => ring && ring.classList.remove('hover'));
+        });
+      } else {
+        if (dot) dot.style.display = 'none';
+        if (ring) ring.style.display = 'none';
+      }
+
+      /* ── MAGNETIC BUTTONS ── */
+      document.querySelectorAll('[data-magnetic]').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transform = 'translate(0, 0)';
+        });
+      });
+
+      /* ── 3D TILT CARDS ── */
+      document.querySelectorAll('[data-tilt]').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          card.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateZ(0)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(800px) rotateY(0) rotateX(0)';
+        });
+      });
+
+      /* ── HEADER SCROLL STATE ── */
+      const header = document.getElementById('siteHeader');
+      if (header) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 40) header.classList.add('scrolled');
+          else header.classList.remove('scrolled');
+        }, { passive: true });
+      }
+
+      /* ── SCROLL REVEAL ── */
+      const reveals = document.querySelectorAll('.reveal');
+      if (reveals.length) {
+        const revealObs = new IntersectionObserver((entries) => {
+          entries.forEach(en => {
+            if (en.isIntersecting) {
+              en.target.classList.add('in');
+              revealObs.unobserve(en.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+        reveals.forEach(r => revealObs.observe(r));
+      }
+
+      /* ── METRIC COUNT-UP ── */
+      const metrics = document.querySelectorAll('.metric');
+      if (metrics.length) {
+        const metricsObs = new IntersectionObserver((entries) => {
+          entries.forEach(en => {
+            if (en.isIntersecting) {
+              en.target.classList.add('in');
+              const valEl = en.target.querySelector('.count');
+              if (valEl) {
+                const target = parseFloat(en.target.dataset.count);
+                const isDecimal = target % 1 !== 0;
+                const dur = 1800;
+                const start = performance.now();
+                function tick(now) {
+                  const p = Math.min((now - start) / dur, 1);
+                  const eased = 1 - Math.pow(1 - p, 3);
+                  const v = target * eased;
+                  valEl.textContent = isDecimal ? v.toFixed(2) : Math.round(v);
+                  if (p < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+              }
+              metricsObs.unobserve(en.target);
+            }
+          });
+        }, { threshold: 0.4 });
+        metrics.forEach(m => metricsObs.observe(m));
+      }
+
+      /* ── MARQUEE: scroll-velocity reactive ── */
+      const track = document.getElementById('marqueeTrack');
+      if (track) {
+        const baseSpeed = 30;
+        let lastScrollY = window.scrollY;
+        let velocity = 0;
+        window.addEventListener('scroll', () => {
+          const cur = window.scrollY;
+          velocity = Math.abs(cur - lastScrollY);
+          lastScrollY = cur;
+          const factor = 1 + Math.min(velocity * 0.05, 2);
+          track.style.animationDuration = (baseSpeed / factor) + 's';
+          clearTimeout(window._marqueeTO);
+          window._marqueeTO = setTimeout(() => {
+            track.style.animationDuration = baseSpeed + 's';
+          }, 200);
+        }, { passive: true });
+      }
+
+      /* ── PAGE TRANSITION ── */
+      const pageTransition = document.getElementById('pageTransition');
+      document.querySelectorAll('a[href]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank') return;
+        if (!href.endsWith('.html') && href !== '/' && !href.includes('/pages/')) return;
+        link.addEventListener('click', (e) => {
+          if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+          e.preventDefault();
+          if (pageTransition) pageTransition.classList.add('active');
+          setTimeout(() => {
+            window.location.href = href;
+          }, 600);
+        });
+      });
+
+      /* ── HAMBURGER ── */
+      const hamburger = document.querySelector('.hamburger');
+      hamburger?.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        alert('Mobile drawer would open here in the production build.');
+      });
+
+    })();
+  </script>
+</body>
+</html>

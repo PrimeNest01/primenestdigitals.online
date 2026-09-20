@@ -1,0 +1,77 @@
+---
+// ============================================================
+// Services Overview — /pages/services.html
+// ============================================================
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { services, pillars } from '../../data/services.js';
+---
+
+<BaseLayout
+  title="Services — PrimeNest Digitals"
+  description="Nine services, four pillars, one accountable team. Meta Ads, Google Ads, SEO, web design, sales funnels, email marketing, marketing automation, reputation management, social media."
+  activePage="services"
+>
+  <section class="page-hero">
+    <div class="page-hero-grid">
+      <div>
+        <div class="breadcrumbs"><a href="/">Home</a><span class="sep">/</span><span>Services</span></div>
+        <h1 class="page-hero-title">Nine services. <em>One accountable</em> mechanism.</h1>
+      </div>
+      <div class="page-hero-meta">
+        <p>Grouped into four pillars so you always know where your budget is going and what it's returning. Most clients engage us across three pillars — paid, convert, and nurture — and add visibility in year two.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-section">
+    <div class="services-header">
+      <div>
+        <div class="section-label">The four pillars</div>
+        <h2 class="section-title reveal">Acquire. Convert. Nurture. <em>Visibility</em>.</h2>
+      </div>
+      <p class="services-intro reveal reveal-delay-1">Hover any pillar for the full service list. Click through to the dedicated service page for deliverables, pricing, and case studies.</p>
+    </div>
+    <div class="services-grid">
+      {pillars.map(pillar => {
+        const pillarServices = services.filter(s => s.pillar === pillar.id);
+        return (
+          <article class="service-card" data-tilt>
+            <div class="service-category">{pillar.name}</div>
+            <h3 class="service-title">{pillarServices[0].name.split(' & ')[0]}</h3>
+            <p class="service-desc">{pillar.description}</p>
+            <ul class="service-list">
+              {pillarServices.map(s => <li>{s.name}</li>)}
+            </ul>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+
+  <section class="services-list-section">
+    <div style="max-width:var(--container);margin:0 auto 64px">
+      <div class="section-label">All nine services</div>
+      <h2 class="section-title reveal">Pick one. Or pick the <em>mechanism</em>.</h2>
+    </div>
+    <div class="services-list">
+      {services.map(s => (
+        <article class="services-list-row reveal">
+          <div class="services-list-num">{String(s.order).padStart(2, '0')}</div>
+          <h3 class="services-list-name"><a href={`/pages/services/${s.slug}/index.html`}>{s.name}</a></h3>
+          <p class="services-list-desc">{s.shortDescription}</p>
+          <a href={`/pages/services/${s.slug}/index.html`} class="services-list-cta">View service</a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-eyebrow reveal">Not sure which pillar?</div>
+      <h2 class="cta-title reveal reveal-delay-1">Start with a <em>free audit</em>.</h2>
+      <p class="cta-sub reveal reveal-delay-2">30 minutes. We'll look at your current stack — paid, web, email, SEO — and tell you exactly which pillar is leaking and which one to invest in first.</p>
+      <a href="/pages/contact.html" class="btn btn-primary reveal reveal-delay-3" data-magnetic>Book the audit <span>→</span></a>
+    </div>
+  </section>
+</BaseLayout>

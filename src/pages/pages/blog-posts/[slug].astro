@@ -1,0 +1,146 @@
+---
+// ============================================================
+// Blog Post — /pages/blog-posts/[slug].html (× 12)
+// Uses blog-posts.js data + blog post content from inline body
+// ============================================================
+
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { blogPosts, getRelatedPosts } from '../../../data/blog-posts.js';
+
+export function getStaticPaths() {
+  return blogPosts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const related = getRelatedPosts(post.slug, 3);
+
+// Sample content for the demo blog post — in production each post gets its own MDX
+const sampleContent = post.slug === 'why-your-facebook-ads-are-not-generating-leads' ? `
+  <h2 id="section-1">The ad is rarely the problem.</h2>
+  <p>When clicks are coming but leads aren't, the temptation is to keep tweaking the ad — change the creative, change the audience, change the bid strategy. I've watched clients burn three months and $20K doing exactly this before they called us. The ad wasn't the problem. The post-click experience was.</p>
+  <p>Here's the diagnostic question I ask every new Meta Ads client: <em>"If I gave you 1,000 free clicks tomorrow, what percentage of them would become a qualified lead?"</em></p>
+  <blockquote>If the answer is "I don't know" or "less than 5%," the ad is not where you should be spending your time.</blockquote>
+  
+  <h2 id="section-2">Where funnels actually leak.</h2>
+  <p>A Meta Ads funnel has four leak points. Diagnose them in order — fixing #2 before #1 is wasted effort.</p>
+  <ul>
+    <li><strong>Leak 1 — Landing page bounce.</strong> The visitor lands, doesn't see what they expected, and leaves in 8 seconds.</li>
+    <li><strong>Leak 2 — Form abandonment.</strong> The visitor starts the form but doesn't finish. Usually a friction or trust issue.</li>
+    <li><strong>Leak 3 — Lead quality rejection.</strong> The form is submitted but the lead is unqualified. Usually an offer mismatch.</li>
+    <li><strong>Leak 4 — Follow-up failure.</strong> The qualified lead is submitted but never contacted in time. Usually a CRM or staffing issue.</li>
+  </ul>
+  
+  <h2 id="section-3">The landing page audit.</h2>
+  <p>Open your landing page in an incognito window. Don't look at it as the person who built it. Look at it as someone who clicked an ad that promised a specific outcome. The first question they should be able to answer in under 5 seconds: <em>"Am I in the right place?"</em></p>
+  <p>Check for these specific things:</p>
+  <ul>
+    <li>Headline matches the ad's promise — not generic.</li>
+    <li>Hero image or video shows the outcome the visitor is shopping for.</li>
+    <li>The form is visible without scrolling. On mobile, especially.</li>
+    <li>Trust signals above the form: license number, years in business, Google review count and rating.</li>
+  </ul>
+  
+  <h2 id="section-4">The form audit.</h2>
+  <p>Most lead forms are too long. The data we've collected across 200+ lead gen funnels says the optimal form has 3–5 fields. Every field beyond five cuts submission rate by approximately 8–12%.</p>
+  
+  <h2 id="section-5">The follow-up audit.</h2>
+  <p>This is the leak that hurts the most. A qualified lead submitted at 2:14 p.m. on a Tuesday should be called by 2:24 p.m. on that same Tuesday. <strong>Speed-to-lead is the single highest-ROI lever in service business marketing.</strong></p>
+  
+  <h2 id="section-6">The fix order.</h2>
+  <p>If you're reading this and recognising your funnel, here's the order to fix it in. Resist the urge to do them all at once — diagnose before you rebuild.</p>
+  <ul>
+    <li><strong>Week 1 — Fix the follow-up.</strong> Instant SMS auto-reply + speed-to-lead SLA.</li>
+    <li><strong>Week 2 — Fix the form.</strong> Cut to 3 fields.</li>
+    <li><strong>Week 3 — Fix the landing page.</strong> Match headline to ad.</li>
+    <li><strong>Week 4+ — Optimise the ad.</strong> Only now do we touch creative.</li>
+  </ul>
+  <p style="margin-top:48px;font-size:14px;color:var(--paper-2)">Got a funnel that's leaking? <a href="/pages/contact.html" style="color:var(--purple);text-decoration:underline">Book a free audit</a> — 30 minutes, no pitch, you keep the notes.</p>
+` : `
+  <p>This is a placeholder for the blog post content. In the production build, each of the 12 blog posts gets its own MDX file with the full article. The MDX file is automatically picked up by this template.</p>
+  <p>To migrate the remaining 11 blog posts, drop the original HTML content into <code>src/content/blog/[slug].mdx</code> and the template will render them automatically.</p>
+  <h2>Coming soon</h2>
+  <p>The full article for "${post.title}" will be ported from your existing live site in Phase 5 of the rebuild. The slug, URL, meta description, reading time, author, and related posts are all already configured correctly.</p>
+`;
+---
+
+<BaseLayout
+  title={`${post.title} — PrimeNest`}
+  description={post.excerpt}
+  activePage="blog"
+>
+  <section class="post-hero">
+    <div class="post-hero-inner">
+      <div class="post-tag">{post.category}</div>
+      <h1 class="post-title" set:html={post.title.replace(/\b(Running|Not Coming|Working|Wasting|Dominate)\b/g, '<em>$1</em>')} />
+      <p class="post-excerpt">{post.excerpt}</p>
+      <div class="post-meta">
+        <span class="author">
+          <span class="avatar">{post.authorInitials}</span> {post.author}
+        </span>
+        <span class="dot" style="width:3px;height:3px;background:var(--paper-2);border-radius:50%"></span>
+        <span>{post.readingTime}</span>
+        <span class="dot" style="width:3px;height:3px;background:var(--paper-2);border-radius:50%"></span>
+        <span>{post.publishedAt}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="post-body">
+    <div class="post-body-inner">
+      <aside class="post-toc">
+        <h5>On this page</h5>
+        <ol>
+          <li><a href="#section-1">Section 1</a></li>
+          <li><a href="#section-2">Section 2</a></li>
+          <li><a href="#section-3">Section 3</a></li>
+          <li><a href="#section-4">Section 4</a></li>
+          <li><a href="#section-5">Section 5</a></li>
+          <li><a href="#section-6">Section 6</a></li>
+        </ol>
+      </aside>
+      <article class="post-content" set:html={sampleContent} />
+    </div>
+  </section>
+
+  <section class="post-footer">
+    <div class="post-footer-inner">
+      <div class="post-share">
+        <span>Share:</span>
+        <a href="#">LinkedIn</a>
+        <a href="#">Twitter</a>
+        <a href="#">Copy link</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="avatar" style="width:32px;height:32px;font-size:11px">{post.authorInitials}</span>
+        <div>
+          <div style="font-size:13px;color:var(--white)">{post.author}</div>
+          <div style="font-size:11px;color:var(--paper-2)">Founder · Lead Strategist</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related-posts">
+    <div class="related-posts-inner">
+      <h3 class="reveal">Related <em>reading</em>.</h3>
+      <div class="blog-list-grid">
+        {related.map((r, i) => (
+          <article class={`blog-card reveal ${i === 1 ? 'reveal-delay-1' : i === 2 ? 'reveal-delay-2' : ''}`}>
+            <a href={`/pages/blog-posts/${r.slug}.html`}><div class="blog-card-img"></div></a>
+            <div class="blog-tag">{r.category}</div>
+            <a href={`/pages/blog-posts/${r.slug}.html`}><h3 class="blog-card-title">{r.title}</h3></a>
+            <p class="blog-card-excerpt">{r.excerpt}</p>
+            <div class="blog-card-meta">
+              <span>{r.readingTime}</span>
+              <span class="dot"></span>
+              <span>{r.publishedAt}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
