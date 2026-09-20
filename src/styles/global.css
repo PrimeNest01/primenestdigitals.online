@@ -233,11 +233,12 @@ ul{list-style:none}
 .site-header.scrolled{padding:16px var(--pad-x);background:rgba(10,10,10,0.85)}
 .brand{
   display:flex;align-items:center;gap:10px;
-  font-family:'Poppins','Inter',sans-serif;
-  font-weight:700;font-size:18px;letter-spacing:-0.01em;
+  font-family:'Orbitron','Poppins',sans-serif;
+  font-weight:800;font-size:16px;letter-spacing:0.12em;text-transform:uppercase;
 }
 .brand-text{display:flex;flex-direction:column;gap:0;line-height:1}
 .brand-text .sub{
+  font-family:'Poppins','Inter',sans-serif;
   font-size:9px;font-weight:400;letter-spacing:0.25em;
   color:var(--purple);text-transform:uppercase;
   margin-top:2px;
@@ -820,6 +821,7 @@ main{position:relative;min-height:60vh}
 @media(min-width:768px){ .footer-grid{grid-template-columns:2fr 1fr 1fr 1fr} }
 .footer-brand-block{max-width:340px}
 .footer-brand-mark{display:flex;align-items:center;gap:12px;margin-bottom:20px;font-family:'Poppins',sans-serif;font-weight:700;font-size:20px}
+.footer-brand-mark .sub{font-family:'Poppins',sans-serif;font-size:10px;font-weight:400;letter-spacing:0.3em;color:var(--purple);text-transform:uppercase;}
 .footer-brand-blurb{font-size:14px;color:var(--paper);line-height:1.65}
 .footer-col h4{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--paper-2);margin-bottom:20px;font-weight:500}
 .footer-col ul{display:flex;flex-direction:column;gap:12px}
