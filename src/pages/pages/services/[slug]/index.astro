@@ -1,7 +1,7 @@
 ---
 // ============================================================
-// Service Detail — /pages/services/[slug]/index.html (× 9)
-// Uses services.js data — one template for all 9 services
+// Service Detail - /pages/services/[slug]/index.html (× 9)
+// Uses services.js data - one template for all 9 services
 // ============================================================
 
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
@@ -21,7 +21,7 @@ const relatedServices = service.relatedServices
 ---
 
 <BaseLayout
-  title={`${service.name} — PrimeNest Digitals`}
+  title={`${service.name} - PrimeNest Digitals`}
   description={service.shortDescription}
   activePage="services"
 >
@@ -100,7 +100,7 @@ const relatedServices = service.relatedServices
             <h2 class="sd-block-title">How we build the <em>mechanism</em>.</h2>
             <div class="sd-block-body">
               {service.process.map(p => (
-                <p><strong>{p.week} — {p.title}.</strong> {p.body}</p>
+                <p><strong>{p.week} - {p.title}.</strong> {p.body}</p>
               ))}
             </div>
           </div>
@@ -113,7 +113,7 @@ const relatedServices = service.relatedServices
             <div class="sd-block-body">
               <p>Two retainer structures, depending on your budget and the complexity of your stack:</p>
               {service.pricing.map(p => (
-                <p><strong>{p.tier}</strong> — {p.price}. {p.bestFor}</p>
+                <p><strong>{p.tier}</strong> - {p.price}. {p.bestFor}</p>
               ))}
               <p>Above $150K/month spend we work on a custom structure. The first call is free, and you'll know by minute 15 whether we're a fit.</p>
             </div>
@@ -140,7 +140,7 @@ const relatedServices = service.relatedServices
               <p>{service.name} rarely runs alone. Most clients engage us across two or three of these:</p>
               <ul class="service-list" style="margin-top:16px">
                 {relatedServices.map(related => (
-                  <li><a href={`/pages/services/${related.slug}/index.html`}>{related.name}</a> — {related.shortDescription.split('.')[0]}.</li>
+                  <li><a href={`/pages/services/${related.slug}/index.html`}>{related.name}</a> - {related.shortDescription.split('.')[0]}.</li>
                 ))}
               </ul>
             </div>
