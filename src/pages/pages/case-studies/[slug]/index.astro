@@ -39,6 +39,8 @@ const otherCaseStudies = caseStudies.filter(other => other.slug !== cs.slug).sli
     </div>
   </section>
 
+  <img src={cs.heroImage} alt={cs.title} class="case-study-hero-image" loading="eager" />
+
   <section class="metrics" style="padding:48px var(--pad-x)">
     <div class="metrics-grid">
       {cs.metrics.map(m => (
