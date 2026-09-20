@@ -10,6 +10,7 @@ import Footer from '../components/Footer.astro';
 import MechanismPreloader from '../components/MechanismPreloader.astro';
 import WhatsAppWidget from '../components/WhatsAppWidget.astro';
 import FreeAuditPanel from '../components/FreeAuditPanel.astro';
+import PopupForm from '../components/PopupForm.astro';
 
 const {
   title = 'PrimeNest Digitals — Marketing With a Mechanism',
@@ -357,6 +358,9 @@ const fullUrl = siteUrl + (canonical === '/' ? '/' : canonical);
 
   <!-- Free Audit slide-out panel -->
   <FreeAuditPanel />
+
+  <!-- Animated popup form (5s delay) -->
+  <PopupForm />
 
 </body>
 </html>
