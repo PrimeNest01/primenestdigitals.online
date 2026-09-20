@@ -1,0 +1,45 @@
+---
+// ============================================================
+// Header — shared navigation, sticky, with brand + nav + CTA
+// ============================================================
+
+import RMark from './RMark.astro';
+
+const { activePage = '' } = Astro.props;
+
+const navItems = [
+  { href: '/', label: 'Home', slug: 'home' },
+  { href: '/pages/services.html', label: 'Services', slug: 'services' },
+  { href: '/pages/portfolio.html', label: 'Work', slug: 'portfolio' },
+  { href: '/pages/about.html', label: 'Studio', slug: 'about' },
+  { href: '/pages/blog.html', label: 'Journal', slug: 'blog' },
+  { href: '/pages/contact.html', label: 'Contact', slug: 'contact' },
+];
+---
+
+<header class="site-header" id="siteHeader">
+  <a href="/" class="brand" data-magnetic>
+    <RMark size="sm" />
+    <span class="brand-text">
+      <span>PRIMENEST</span>
+      <span class="sub">Digitals</span>
+    </span>
+  </a>
+  <nav>
+    <ul class="nav-list">
+      {navItems.map(item => (
+        <li>
+          <a href={item.href} aria-current={activePage === item.slug ? 'page' : undefined}>
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+  <a href="/pages/contact.html" class="nav-cta" data-magnetic>
+    Book a call <span class="nav-cta-arrow">→</span>
+  </a>
+  <button class="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>

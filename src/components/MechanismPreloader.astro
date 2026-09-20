@@ -1,0 +1,142 @@
+---
+// ============================================================
+// Mechanism Preloader — 3.5s opening animation
+// Plays on first visit only (sessionStorage guard)
+// Stages: wireframe assembly → R mark emergence → wordmark types → tagline fades → page splits
+// ============================================================
+---
+
+<div class="preloader" id="preloader">
+  <div class="pre-stage">
+    <div class="pre-wireframe" id="preWireframe"></div>
+    <div class="pre-r-mark">
+      <span class="r-mark lg" style="position:relative;width:160px;height:160px;border-radius:16px"></span>
+    </div>
+    <div class="pre-pulse"></div>
+  </div>
+  <div class="pre-wordmark" id="preWordmark"></div>
+  <div class="pre-tagline">Marketing With a Mechanism</div>
+</div>
+
+<style is:global>
+/* Preloader */
+.preloader{
+  position:fixed;
+  inset:0;
+  background:#0A0A0A;
+  z-index:10000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.preloader.done{
+  animation:preloaderExit 0.7s cubic-bezier(0.76,0,0.24,1) forwards;
+}
+@keyframes preloaderExit{
+  0%{clip-path:inset(0 0 0 0)}
+  100%{clip-path:inset(50% 0 50% 0)}
+}
+.pre-stage{
+  position:relative;
+  width:340px;
+  height:340px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.pre-wireframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  opacity:0;
+  animation:wireFade 0.4s 0.2s forwards;
+}
+@keyframes wireFade{ to{opacity:1} }
+.pre-wireframe svg{width:100%;height:100%;overflow:visible}
+.wire-dot{
+  fill:#8B5CF6;
+  filter:drop-shadow(0 0 6px rgba(139,92,246,0.35));
+  opacity:0;
+  animation:dotAppear 0.4s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+@keyframes dotAppear{ to{opacity:1} }
+.wire-line{
+  stroke:#8B5CF6;
+  stroke-width:1;
+  fill:none;
+  opacity:0;
+  animation:lineDraw 0.5s cubic-bezier(0.22,1,0.36,1) forwards;
+  stroke-dasharray:100;
+  stroke-dashoffset:100;
+}
+@keyframes lineDraw{ to{opacity:1;stroke-dashoffset:0} }
+.pre-r-mark{
+  position:absolute;
+  width:160px;
+  height:160px;
+  opacity:0;
+  transform:scale(0.6) rotate(-12deg);
+  animation:rMarkEmerge 0.9s 1.6s cubic-bezier(0.76,0,0.24,1) forwards;
+  filter:drop-shadow(0 0 24px rgba(139,92,246,0.35));
+}
+@keyframes rMarkEmerge{ to{opacity:1;transform:scale(1) rotate(0)} }
+.pre-r-mark svg{width:100%;height:100%}
+.pre-wordmark{
+  position:absolute;
+  top:65%;
+  left:50%;
+  transform:translateX(-50%);
+  font-family:'Poppins','Inter',sans-serif;
+  font-weight:700;
+  font-size:24px;
+  letter-spacing:0.06em;
+  color:#fff;
+  white-space:nowrap;
+  opacity:0;
+  animation:wordFade 0.5s 2.5s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+@keyframes wordFade{ to{opacity:1} }
+.pre-wordmark span{
+  display:inline-block;
+  opacity:0;
+  transform:translateY(20px);
+  animation:wordLetter 0.4s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+@keyframes wordLetter{ to{opacity:1;transform:translateY(0)} }
+.pre-tagline{
+  position:absolute;
+  top:74%;
+  left:50%;
+  transform:translateX(-50%);
+  font-family:'Fraunces',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:14px;
+  color:#8B5CF6;
+  letter-spacing:0.1em;
+  white-space:nowrap;
+  opacity:0;
+  animation:tagFade 0.6s 3.1s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+@keyframes tagFade{ to{opacity:1} }
+.pre-pulse{
+  position:absolute;
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  border:2px solid #8B5CF6;
+  opacity:0;
+  animation:pulse 1s 3.0s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+@keyframes pulse{
+  0%{opacity:0.8;transform:scale(0.6)}
+  100%{opacity:0;transform:scale(2.4)}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .preloader{display:none !important}
+  body{overflow:auto !important}
+}
+</style>

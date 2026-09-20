@@ -1,0 +1,247 @@
+---
+// ============================================================
+// Home Page — PrimeNest Digitals
+// ============================================================
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import RMark from '../components/RMark.astro';
+
+const stats = [
+  { num: 526, suffix: 'K', prefix: '$', label: 'Revenue from Meta Ads' },
+  { num: 12.87, suffix: 'X', prefix: '', label: 'Best return on ad spend' },
+  { num: 30, suffix: '', prefix: '', label: 'Verified Behance projects' },
+  { num: 1.09, suffix: 'M', prefix: '', label: 'People reached' },
+];
+
+const pillars = [
+  {
+    category: 'Acquire',
+    title: 'Meta & Google Ads',
+    desc: 'Paid media that earns its budget back. Search, shopping, social — built on first-party data, optimised weekly.',
+    list: ['Meta Ads (Facebook & Instagram)', 'Google Ads (Search & Shopping)', 'Retargeting & lookalikes', 'ROAS & CPL optimisation'],
+  },
+  {
+    category: 'Convert',
+    title: 'Web & Funnels',
+    desc: 'Sites and funnels that turn traffic into pipeline. Shopify, WordPress, GoHighLevel — built around the journey.',
+    list: ['Ecommerce website design', 'Sales funnel design', 'Landing pages & checkout', 'Conversion rate optimisation'],
+  },
+  {
+    category: 'Nurture',
+    title: 'Automation & Email',
+    desc: 'Email and automation that quietly print revenue. Klaviyo + GoHighLevel + ChatGPT — flows that qualify leads.',
+    list: ['Klaviyo email marketing', 'GoHighLevel CRM & automation', 'AI lead qualification', 'Cart recovery & nurture flows'],
+  },
+  {
+    category: 'Visibility',
+    title: 'SEO & Reputation',
+    desc: 'Long-term channels that compound. Local SEO, content, social, and reputation — built so you stop renting attention.',
+    list: ['Local & on-page SEO', 'Social media management', 'Online reputation management', 'Content & link strategy'],
+  },
+];
+
+const statsPill = [
+  { num: '$526K', label: 'Revenue' },
+  { num: '12.87X', label: 'ROAS' },
+  { num: '30', label: 'Verified projects' },
+  { num: '1.09M', label: 'Reached' },
+  { num: '3', label: 'Markets' },
+];
+---
+
+<BaseLayout
+  title="PrimeNest Digitals — Marketing With a Mechanism"
+  description="A focused digital marketing studio building revenue systems for construction, ecommerce, and service businesses across the US, Canada, and the UK. Marketing with a mechanism."
+  activePage="home"
+  showPreloader={true}
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-dot"></span>
+          Marketing Automation · Funnels · Reputation · US / CA / UK
+        </div>
+        <h1 class="hero-title" id="heroTitle"></h1>
+      </div>
+      <div class="hero-meta">
+        <p>
+          A focused studio that builds the marketing and sales mechanism behind
+          construction, ecommerce, and service businesses. No juniors. No
+          freelancers. One strategist from first call to last report.
+        </p>
+        <div class="hero-actions">
+          <a href="/pages/contact.html" class="btn btn-primary" data-magnetic>Book a free audit <span>→</span></a>
+          <a href="/pages/portfolio.html" class="btn btn-ghost" data-magnetic>See the work</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS PILL BAR -->
+    <div class="stats-pill-bar">
+      <div class="stats-pill">
+        {statsPill.map(item => (
+          <div class="stats-pill-item">
+            <span class="num">{item.num}</span>
+            <span class="label">{item.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER SIGNED NOTE -->
+  <section class="section" style="padding-top:80px;padding-bottom:80px">
+    <div class="founder-note">
+      <div class="founder-note-card reveal">
+        <div class="founder-photo-wrap">
+          <div class="founder-photo">HG</div>
+          <div style="text-align:center">
+            <div class="founder-photo-name">Hazeem Garuba</div>
+            <div class="founder-photo-role">Founder · Lead Strategist</div>
+          </div>
+        </div>
+        <div class="founder-note-body">
+          <p>"I started PrimeNest Digitals after eight years inside performance marketing agencies — watching clients get bounced between account managers, sold deliverables they didn't need, and billed for strategy that was actually just template work. I built this studio as the opposite of that."</p>
+          <p style="font-size:16px;color:var(--paper);font-style:normal;font-family:Inter,sans-serif;font-weight:400;line-height:1.7;margin-top:24px">If you hire us, the person on your first call is the person on your 200th. No handoff. No juniors. No buzzword theatre. Just one strategist, the work, and a revenue system that compounds month over month.</p>
+          <div class="founder-signature">
+            <div class="founder-sig-name">— Hazeem</div>
+            <div class="founder-sig-meta">Founder · PrimeNest Digitals</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section class="metrics">
+    <div class="metrics-grid">
+      {stats.map(s => (
+        <div class="metric" data-count={s.num} data-suffix={s.suffix} data-prefix={s.prefix}>
+          <div class="metric-value">
+            {s.prefix && <span class="prefix">{s.prefix}</span>}
+            <span class="count">0</span>
+            <span class="suffix">{s.suffix}</span>
+          </div>
+          <div class="metric-label">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- SERVICES (Mechanism-themed) -->
+  <section class="services-section">
+    <div class="services-header">
+      <div>
+        <div class="section-label">The mechanism</div>
+        <h2 class="section-title reveal">Four pillars. <em>One accountable</em> system.</h2>
+      </div>
+      <p class="services-intro reveal reveal-delay-1">
+        Nine services, grouped into four pillars. Each pillar is one part of the
+        mechanism — acquire traffic, convert it, nurture it, compound visibility.
+        Fix the leaks before you scale the spend.
+      </p>
+    </div>
+    <div class="services-grid">
+      {pillars.map(pillar => (
+        <article class="service-card" data-tilt>
+          <div class="service-category">{pillar.category}</div>
+          <h3 class="service-title">{pillar.title}</h3>
+          <p class="service-desc">{pillar.desc}</p>
+          <ul class="service-list">
+            {pillar.list.map(item => <li>{item}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- CASE STUDY PREVIEW -->
+  <section class="case-study">
+    <div class="cs-inner">
+      <div class="cs-sticky-wrap">
+        <div class="cs-sticky-left">
+          <div class="cs-eyebrow">Case study · 01</div>
+          <h2 class="cs-title reveal">How <em>$41,540</em> in Meta Ads spend became <em>$526,488</em> in ecommerce revenue.</h2>
+          <p class="cs-blurb reveal reveal-delay-1">A skincare brand with strong product, weak funnel. We rebuilt the ad account structure, creative testing cadence, and post-click email flow. Six months, 12.87X ROAS.</p>
+          <div class="cs-metrics">
+            <div><div class="cs-metric-num">$526K</div><div class="cs-metric-label">Revenue</div></div>
+            <div><div class="cs-metric-num">12.87X</div><div class="cs-metric-label">ROAS</div></div>
+            <div><div class="cs-metric-num">6mo</div><div class="cs-metric-label">Timeline</div></div>
+            <div><div class="cs-metric-num">3</div><div class="cs-metric-label">Markets</div></div>
+          </div>
+        </div>
+        <div class="cs-scroll-right">
+          <div class="cs-slide reveal">
+            <div class="cs-slide-num">01 · Diagnosis</div>
+            <h3 class="cs-slide-title">The account was burning spend on a broken funnel.</h3>
+            <p class="cs-slide-body">Meta was delivering clicks. The site was losing them in the first scroll. The cart recovery flow sent one email, 24 hours later, with no segmentation. We audited 90 days of data and found the leak: 68% of paid traffic bounced from product pages.</p>
+          </div>
+          <div class="cs-slide reveal">
+            <div class="cs-slide-num">02 · Strategy</div>
+            <h3 class="cs-slide-title">Rebuild the mechanism before scaling the spend.</h3>
+            <p class="cs-slide-body">We paused scaling and rebuilt in this order: product page copy and hierarchy, a four-email cart recovery flow with send-time optimisation, a creative testing matrix structured by audience and intent, and a server-side tracking layer so the algorithm actually saw what was converting.</p>
+          </div>
+          <div class="cs-slide reveal">
+            <div class="cs-slide-num">03 · Execution</div>
+            <h3 class="cs-slide-title">Test like a portfolio, not a lottery.</h3>
+            <p class="cs-slide-body">Six creatives live at any time, rotated weekly, killed at statistical significance — not at gut feel. Audiences layered: coldest prospecting looked different from warm retargeting, which looked different from the recent-purchaser nurture.</p>
+          </div>
+          <div class="cs-slide reveal">
+            <div class="cs-slide-num">04 · Result</div>
+            <h3 class="cs-slide-title">$526,488 in tracked revenue. 12.87X return.</h3>
+            <p class="cs-slide-body">Six months. Three markets. One accountable team. The brand now runs profitably on paid acquisition and the email flow alone contributes 18% of monthly revenue without a single additional dollar of ad spend. That's the difference between a funnel and a mechanism.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team-section">
+    <div class="team-inner">
+      <div class="team-header">
+        <div>
+          <div class="section-label">The studio</div>
+          <h2 class="section-title reveal">Small on purpose. <em>Senior</em> by design.</h2>
+        </div>
+        <p class="services-intro reveal reveal-delay-1">No account managers handing you between juniors. The person on your first call is the person on your 200th.</p>
+      </div>
+      <div class="team-grid">
+        <article class="team-card founder reveal">
+          <div class="team-card-photo">HG</div>
+          <div><div class="team-card-name">Hazeem Garuba</div><div class="team-card-role">Founder · Lead Strategist</div></div>
+          <p class="team-card-bio">Eight years in performance marketing across construction, ecommerce, and home services. Personally oversees every Meta Ads account, every funnel, every CRM automation. The buck stops here, and so does the strategy.</p>
+          <div class="team-card-skills">
+            <span class="team-skill">Meta Ads</span><span class="team-skill">Google Ads</span><span class="team-skill">Klaviyo</span>
+            <span class="team-skill">GoHighLevel</span><span class="team-skill">SEO</span><span class="team-skill">Funnels</span><span class="team-skill">ChatGPT</span>
+          </div>
+          <div class="team-card-social">
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn →</a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram →</a>
+            <a href="/pages/contact.html">Email →</a>
+          </div>
+        </article>
+        <article class="team-card reveal reveal-delay-1">
+          <div class="team-card-photo">AE</div>
+          <div><div class="team-card-name">Ajayi E.</div><div class="team-card-role">Delivery</div></div>
+          <p class="team-card-bio">Specialises in execution — design QA, email QA, landing page QA. Every campaign that ships passes through this desk before it goes live.</p>
+          <div class="team-card-social">
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-eyebrow reveal">Book a free audit</div>
+      <h2 class="cta-title reveal reveal-delay-1">Let's see if we're <em>a fit</em>.</h2>
+      <p class="cta-sub reveal reveal-delay-2">30 minutes. No pitch. No agency handoff. Just an honest read on what's working, what's leaking, and what we'd do first if you hired us. You keep the notes either way.</p>
+      <a href="/pages/contact.html" class="btn btn-primary reveal reveal-delay-3" data-magnetic>Book the call <span>→</span></a>
+    </div>
+  </section>
+</BaseLayout>

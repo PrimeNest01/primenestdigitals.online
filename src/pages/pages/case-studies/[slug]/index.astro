@@ -1,0 +1,108 @@
+---
+// ============================================================
+// Case Study Detail — /pages/case-studies/[slug]/index.html (× 3)
+// Uses case-studies.js data
+// ============================================================
+
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { caseStudies, getCaseStudy } from '../../../../data/case-studies.js';
+
+export function getStaticPaths() {
+  return caseStudies.map(cs => ({
+    params: { slug: cs.slug },
+    props: { cs },
+  }));
+}
+
+const { cs } = Astro.props;
+const otherCaseStudies = caseStudies.filter(other => other.slug !== cs.slug).slice(0, 3);
+---
+
+<BaseLayout
+  title={`${cs.title} — Case Study · PrimeNest Digitals`}
+  description={cs.summary}
+  activePage="portfolio"
+>
+  <section class="page-hero" style="padding-bottom:48px">
+    <div class="page-hero-grid">
+      <div>
+        <div class="breadcrumbs">
+          <a href="/">Home</a><span class="sep">/</span>
+          <a href="/pages/portfolio.html">Work</a><span class="sep">/</span>
+          <span>{cs.category}</span>
+        </div>
+        <h1 class="page-hero-title" set:html={cs.title} />
+      </div>
+      <div class="page-hero-meta">
+        <p>{cs.summary}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="metrics" style="padding:48px var(--pad-x)">
+    <div class="metrics-grid">
+      {cs.metrics.map(m => (
+        <div class="metric in">
+          <div class="metric-value" style="font-size:clamp(32px,4vw,52px)">{m.num}</div>
+          <div class="metric-label">{m.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="case-study" style="padding-top:80px">
+    <div class="cs-inner">
+      <div class="cs-sticky-wrap">
+        <div class="cs-sticky-left">
+          <div class="cs-eyebrow">The narrative</div>
+          <h2 class="cs-title reveal">The full <em>diagnosis → strategy → execution → result</em> arc.</h2>
+          <p class="cs-blurb reveal reveal-delay-1">Scroll through the four chapters of how this account went from bleeding spend to compounding revenue.</p>
+        </div>
+        <div class="cs-scroll-right">
+          {cs.chapters.map(chapter => (
+            <div class="cs-slide reveal">
+              <div class="cs-slide-num">Chapter {chapter.num} · {chapter.label}</div>
+              <h3 class="cs-slide-title">{chapter.title}</h3>
+              {chapter.body.split('\n\n').map(para => (
+                <p class="cs-slide-body" style="margin-top:16px">{para}</p>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related-posts" style="background:var(--black-2)">
+    <div class="related-posts-inner">
+      <div style="margin-bottom:32px">
+        <div class="section-label">More work</div>
+        <h3 class="reveal">Next case <em>studies</em>.</h3>
+      </div>
+      <div class="blog-list-grid">
+        {otherCaseStudies.map(other => (
+          <article class="blog-card reveal">
+            <a href={`/pages/case-studies/${other.slug}/index.html`}><div class="blog-card-img"></div></a>
+            <div class="blog-tag">Case Study</div>
+            <a href={`/pages/case-studies/${other.slug}/index.html`}><h3 class="blog-card-title">{other.title}</h3></a>
+            <p class="blog-card-excerpt">{other.summary}</p>
+            <div class="blog-card-meta">
+              <span>{other.category}</span>
+              <span class="dot"></span>
+              <span>{other.timeline}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-eyebrow reveal">Want results like this?</div>
+      <h2 class="cta-title reveal reveal-delay-1">Let's see if your account <em>can lift</em>.</h2>
+      <p class="cta-sub reveal reveal-delay-2">Book a free 30-minute audit. We'll look at your stack — paid, web, email, automation — and tell you where the leaks are. You keep the notes either way.</p>
+      <a href="/pages/contact.html" class="btn btn-primary reveal reveal-delay-3" data-magnetic>Book the audit <span>→</span></a>
+    </div>
+  </section>
+</BaseLayout>

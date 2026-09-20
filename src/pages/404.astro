@@ -1,0 +1,52 @@
+---
+// ============================================================
+// 404 — /404.html
+// ============================================================
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const popularDestinations = [
+  { num: '01', name: 'All services', desc: 'Nine services across four pillars. Start here if you\'re shopping for what we do.', href: '/pages/services.html' },
+  { num: '02', name: 'Portfolio', desc: '30 verified Behance projects across construction, ecommerce, and service businesses.', href: '/pages/portfolio.html' },
+  { num: '03', name: 'Featured case study', desc: 'How $41,540 in Meta Ads spend became $526,488 in ecommerce revenue. 12.87X ROAS.', href: '/pages/case-studies/meta-ads-526k/index.html' },
+  { num: '04', name: 'Journal', desc: 'Practical insights for construction, ecommerce, and service businesses. Written by the strategist who runs the work.', href: '/pages/blog.html' },
+  { num: '05', name: 'Contact', desc: 'Book a free 30-minute audit. No pitch. No agency handoff. Just an honest read.', href: '/pages/contact.html' },
+];
+---
+
+<BaseLayout
+  title="Page Not Found — PrimeNest Digitals"
+  description="The page you were looking for doesn't exist. Use the navigation, search, or one of the popular links below."
+  activePage=""
+>
+  <section class="not-found">
+    <div class="not-found-inner">
+      <div class="not-found-code">4<em>0</em>4</div>
+      <h1 class="not-found-title">This page doesn't exist.</h1>
+      <p class="not-found-body">It may have been moved, deleted, or never existed in the first place. If you got here from a link on our site, we'd appreciate a heads-up so we can fix it.</p>
+      <div class="not-found-actions">
+        <a href="/" class="btn btn-primary" data-magnetic>Go home <span>→</span></a>
+        <a href="/pages/contact.html" class="btn btn-ghost" data-magnetic>Report the broken link</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="section-inner">
+      <div style="margin-bottom:48px">
+        <div class="section-label">Try these instead</div>
+        <h2 class="section-title reveal" style="font-size:clamp(28px,3.5vw,48px)">Popular <em>destinations</em>.</h2>
+      </div>
+      <div class="services-list">
+        {popularDestinations.map(d => (
+          <article class="services-list-row reveal">
+            <div class="services-list-num">{d.num}</div>
+            <h3 class="services-list-name"><a href={d.href}>{d.name}</a></h3>
+            <p class="services-list-desc">{d.desc}</p>
+            <a href={d.href} class="services-list-cta">View</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

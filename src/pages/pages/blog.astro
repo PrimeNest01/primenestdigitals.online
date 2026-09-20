@@ -1,0 +1,95 @@
+---
+// ============================================================
+// Blog Index — /pages/blog.html
+// ============================================================
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { blogPosts, getFeaturedPost } from '../../data/blog-posts.js';
+
+const featured = getFeaturedPost();
+const recentPosts = blogPosts.filter(p => p.slug !== featured.slug);
+const filters = ['All posts', 'Meta Ads', 'Google Ads', 'SEO', 'Email', 'Construction', 'Ecommerce'];
+---
+
+<BaseLayout
+  title="Journal — Marketing Insights · PrimeNest Digitals"
+  description="Practical insights for construction, ecommerce, and service businesses. Written by the strategist who actually runs the work."
+  activePage="blog"
+>
+  <section class="page-hero">
+    <div class="page-hero-grid">
+      <div>
+        <div class="breadcrumbs"><a href="/">Home</a><span class="sep">/</span><span>Journal</span></div>
+        <h1 class="page-hero-title">Practical insights that <em>actually help</em> your business grow.</h1>
+      </div>
+      <div class="page-hero-meta">
+        <p>No fluff, no keyword-stacked SEO content. Every post is written by the strategist who runs the work — for the operators who hire people like us.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="blog-featured">
+    <div class="blog-featured-inner">
+      <article class="blog-featured-card reveal">
+        <div class="blog-featured-img"></div>
+        <div class="blog-featured-content">
+          <div class="blog-tag">Featured · {featured.category}</div>
+          <h2 class="blog-title" set:html={featured.title.replace(/\b(Running|Not Coming)\b/g, '<em>$1</em>')} />
+          <p class="blog-excerpt">{featured.excerpt}</p>
+          <div class="blog-meta">
+            <span>By {featured.author}</span>
+            <span class="dot"></span>
+            <span>{featured.readingTime}</span>
+            <span class="dot"></span>
+            <span>Updated {featured.publishedAt}</span>
+          </div>
+          <a href={`/pages/blog-posts/${featured.slug}.html`} class="btn btn-primary" data-magnetic style="margin-top:8px">Read the article <span>→</span></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="portfolio-filters" style="position:static;background:transparent;backdrop-filter:none;border-bottom:1px solid var(--line)">
+    <div class="portfolio-filters-inner">
+      {filters.map((f, i) => (
+        <button class={`portfolio-filter ${i === 0 ? 'active' : ''}`}>{f}</button>
+      ))}
+    </div>
+  </div>
+
+  <section class="blog-list">
+    <div class="blog-list-inner">
+      <div class="blog-list-header">
+        <div>
+          <div class="section-label">All posts</div>
+          <h2 class="section-title reveal">Recent <em>writing</em>.</h2>
+        </div>
+        <p class="services-intro reveal reveal-delay-1" style="max-width:340px">{blogPosts.length} posts. Updated when we have something useful to say, not on a content calendar.</p>
+      </div>
+      <div class="blog-list-grid">
+        {recentPosts.map((post, i) => (
+          <article class={`blog-card reveal ${i % 3 === 1 ? 'reveal-delay-1' : i % 3 === 2 ? 'reveal-delay-2' : ''}`}>
+            <a href={`/pages/blog-posts/${post.slug}.html`}><div class="blog-card-img"></div></a>
+            <div class="blog-tag">{post.category}</div>
+            <a href={`/pages/blog-posts/${post.slug}.html`}><h3 class="blog-card-title">{post.title}</h3></a>
+            <p class="blog-card-excerpt">{post.excerpt}</p>
+            <div class="blog-card-meta">
+              <span>{post.readingTime}</span>
+              <span class="dot"></span>
+              <span>{post.publishedAt}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-eyebrow reveal">Want more?</div>
+      <h2 class="cta-title reveal reveal-delay-1">Get the next post in your <em>inbox</em>.</h2>
+      <p class="cta-sub reveal reveal-delay-2">No spam. One post a month, written by the strategist who runs the work. Unsubscribe with one click.</p>
+      <a href="/pages/contact.html" class="btn btn-primary reveal reveal-delay-3" data-magnetic>Get on the list <span>→</span></a>
+    </div>
+  </section>
+</BaseLayout>

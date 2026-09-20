@@ -1,0 +1,110 @@
+---
+// ============================================================
+// Contact — /pages/contact.html
+// ============================================================
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const channels = [
+  { icon: '📅', label: 'Book directly', value: 'Pick a 30-min slot on the calendar', href: 'https://go.primenestdigitals.online/book-a-strategic-call', external: true },
+  { icon: '💬', label: 'WhatsApp', value: 'Chat with Hazeem directly', href: '#', external: false },
+  { icon: '✉', label: 'Email', value: 'hello@primenestdigitals.online', href: 'mailto:hello@primenestdigitals.online', external: false },
+  { icon: 'in', label: 'LinkedIn', value: 'Connect with Hazeem', href: '#', external: false },
+];
+---
+
+<BaseLayout
+  title="Contact — Free Marketing Audit · PrimeNest Digitals"
+  description="Book a free 30-minute audit. No pitch, no agency handoff. Just an honest read on what's working and what's leaking."
+  activePage="contact"
+>
+  <section class="page-hero">
+    <div class="page-hero-grid">
+      <div>
+        <div class="breadcrumbs"><a href="/">Home</a><span class="sep">/</span><span>Contact</span></div>
+        <h1 class="page-hero-title">No pitch. No agency handoff. <em>Just honest help</em>.</h1>
+      </div>
+      <div class="page-hero-meta">
+        <p>30 minutes. We'll look at your current stack — paid, web, email, SEO — and tell you exactly where it's leaking and what we'd do first if you hired us. You keep the notes either way.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3 class="reveal">Three ways to <em>start the conversation</em>.</h3>
+        <p class="reveal reveal-delay-1">Pick the one that feels easiest. They all end at the same place: a free audit, no obligation, no email sequence.</p>
+        <div class="contact-channels reveal reveal-delay-2">
+          {channels.map(c => (
+            <a href={c.href} class="contact-channel" {...(c.external ? { target: '_blank', rel: 'noopener' } : {})}>
+              <div class="contact-channel-icon">{c.icon}</div>
+              <div class="contact-channel-text">
+                <div class="contact-channel-label">{c.label}</div>
+                <div class="contact-channel-value">{c.value}</div>
+              </div>
+            </a>
+          ))}
+        </div>
+        <div style="border-top:1px solid var(--line);padding-top:32px;margin-top:32px">
+          <div class="section-label">Or fill the form</div>
+          <p style="font-size:13px;color:var(--paper-2)">If you'd rather write it out first, the form below goes straight to Hazeem's inbox. We reply inside 24 hours, weekdays.</p>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="event.preventDefault();alert('In production this posts to the CRM and routes to the founder inside 24h.');">
+        <h4>Request a free audit</h4>
+        <div class="form-row two">
+          <div class="form-field">
+            <label for="firstName">First name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Jordan" required />
+          </div>
+          <div class="form-field">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" placeholder="Acme Construction" />
+          </div>
+        </div>
+        <div class="form-row two">
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" required />
+          </div>
+          <div class="form-field">
+            <label for="phone">Phone (optional)</label>
+            <input type="tel" id="phone" name="phone" placeholder="+1 555 000 0000" />
+          </div>
+        </div>
+        <div class="form-row two">
+          <div class="form-field">
+            <label for="industry">Industry</label>
+            <select id="industry" name="industry" required>
+              <option value="">Select…</option>
+              <option>Construction / contractor</option>
+              <option>Ecommerce</option>
+              <option>Service business</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="monthlySpend">Monthly ad spend</label>
+            <select id="monthlySpend" name="monthlySpend">
+              <option value="">Select…</option>
+              <option>Under $5K</option>
+              <option>$5K – $20K</option>
+              <option>$20K – $50K</option>
+              <option>$50K – $150K</option>
+              <option>$150K+</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field" style="margin-bottom:16px">
+          <label for="message">What's the situation?</label>
+          <textarea id="message" name="message" placeholder="Tell us briefly what you're trying to fix or scale. No need for a brief — a paragraph or two is enough to start."></textarea>
+        </div>
+        <div class="form-submit">
+          <span class="form-note">We reply inside 24 hours, weekdays. No spam, ever.</span>
+          <button type="submit" class="btn btn-primary" data-magnetic>Send the request <span>→</span></button>
+        </div>
+      </form>
+    </div>
+  </section>
+</BaseLayout>
