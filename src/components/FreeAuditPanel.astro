@@ -1,0 +1,86 @@
+---
+// ============================================================
+// FreeAuditPanel — slide-out panel with Systeme.io form
+// Restored from original site
+// ============================================================
+---
+
+<button class="panel-tab" id="panelTab" aria-label="Open free audit form">Free Audit ↑</button>
+<div class="panel-overlay" id="panelOverlay"></div>
+<aside class="slide-panel" id="slidePanel">
+  <div class="panel-handle-wrap"><div class="panel-handle"></div></div>
+  <div class="panel-inner">
+    <div class="panel-header">
+      <div>
+        <div class="panel-eyebrow">Start for Free</div>
+        <h2 class="panel-title">Get Your Free Marketing Audit</h2>
+        <p class="panel-blurb">Hazeem personally reviews your marketing and sends a detailed report within 48 hours.</p>
+      </div>
+      <button class="panel-close" id="panelClose" aria-label="Close">✕</button>
+    </div>
+    <div class="panel-form-wrap" id="systemeio-embed-wrap">
+      <script src="https://hazeem-orm-solution.systeme.io/public/remote/page/441003282c274cd97b0cdd0bbcca5de662646cc6.js"></script>
+    </div>
+    <div class="panel-alt">
+      <h4>Or Book a Strategy Call Directly</h4>
+      <p>30 minutes with Hazeem. No account manager. A genuine conversation about your business and what realistic growth looks like.</p>
+      <a href="https://go.primenestdigitals.online/book-a-strategic-call" target="_blank" rel="noopener" class="btn btn-primary panel-alt-cta">Book Your Free Strategy Call →</a>
+    </div>
+  </div>
+</aside>
+
+<style is:global>
+.panel-tab{
+  position:fixed;right:-40px;top:50%;transform:translateY(-50%) rotate(-90deg);
+  transform-origin:left center;
+  background:linear-gradient(135deg,#7C3AED 0%,#A855F7 100%);color:#fff;
+  border:none;padding:10px 18px;border-radius:8px 8px 0 0;
+  font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  cursor:pointer;z-index:201;
+  box-shadow:0 8px 24px rgba(139,92,246,0.4);
+  transition:right 0.3s,background 0.3s;
+}
+.panel-tab:hover{right:-32px}
+.panel-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:202;opacity:0;pointer-events:none;transition:opacity 0.3s}
+.panel-overlay.open{opacity:1;pointer-events:auto}
+.slide-panel{
+  position:fixed;top:0;right:0;bottom:0;width:420px;max-width:90vw;
+  background:var(--black-2,#111);border-left:1px solid rgba(139,92,246,0.2);
+  z-index:203;transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.76,0,0.24,1);
+  overflow-y:auto;
+  box-shadow:-20px 0 60px rgba(0,0,0,0.4);
+}
+.slide-panel.open{transform:translateX(0)}
+.panel-handle-wrap{display:flex;justify-content:center;padding:14px 0 0}
+.panel-handle{width:36px;height:4px;background:rgba(255,255,255,0.2);border-radius:2px}
+.panel-inner{padding:16px 24px 32px}
+.panel-eyebrow{font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:#8B5CF6;margin-bottom:8px}
+.panel-title{font-family:'Fraunces',serif;font-weight:400;font-size:22px;color:#fff;letter-spacing:-0.02em;margin-bottom:8px;line-height:1.2}
+.panel-blurb{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;margin-bottom:20px}
+.panel-close{position:absolute;top:18px;right:18px;background:rgba(255,255,255,0.06);border:none;color:rgba(255,255,255,0.55);width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:14px}
+.panel-close:hover{background:rgba(255,255,255,0.1);color:#fff}
+.panel-form-wrap{margin-bottom:24px;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;background:rgba(255,255,255,0.02)}
+.panel-form-wrap iframe,.panel-form-wrap form{width:100% !important}
+.panel-form-wrap [data-systemeio]{width:100% !important}
+.panel-alt{border-top:1px solid rgba(255,255,255,0.08);padding-top:20px}
+.panel-alt h4{font-family:'Fraunces',serif;font-weight:500;font-size:15px;color:#fff;margin-bottom:6px}
+.panel-alt p{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:12px}
+.panel-alt-cta{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:8px;font-size:13px;font-weight:600}
+@media(max-width:600px){.slide-panel{width:100vw}}
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var tab = document.getElementById('panelTab');
+    var panel = document.getElementById('slidePanel');
+    var overlay = document.getElementById('panelOverlay');
+    var close = document.getElementById('panelClose');
+    if (!tab || !panel) return;
+    function openPanel(){panel.classList.add('open');overlay && overlay.classList.add('open')}
+    function closePanel(){panel.classList.remove('open');overlay && overlay.classList.remove('open')}
+    tab.addEventListener('click', openPanel);
+    if (close) close.addEventListener('click', closePanel);
+    if (overlay) overlay.addEventListener('click', closePanel);
+    document.addEventListener('keydown', function(e){if(e.key === 'Escape') closePanel()});
+  });
+</script>
