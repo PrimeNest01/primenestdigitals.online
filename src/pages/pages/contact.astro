@@ -51,60 +51,13 @@ const channels = [
           <p style="font-size:13px;color:var(--paper-2)">If you'd rather write it out first, the form below goes straight to Hazeem's inbox. We reply inside 24 hours, weekdays.</p>
         </div>
       </div>
-      <form class="contact-form" onsubmit="event.preventDefault();alert('In production this posts to the CRM and routes to the founder inside 24h.');">
-        <h4>Request a free audit</h4>
-        <div class="form-row two">
-          <div class="form-field">
-            <label for="firstName">First name</label>
-            <input type="text" id="firstName" name="firstName" placeholder="Jordan" required />
-          </div>
-          <div class="form-field">
-            <label for="company">Company</label>
-            <input type="text" id="company" name="company" placeholder="Acme Construction" />
-          </div>
-        </div>
-        <div class="form-row two">
-          <div class="form-field">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="you@company.com" required />
-          </div>
-          <div class="form-field">
-            <label for="phone">Phone (optional)</label>
-            <input type="tel" id="phone" name="phone" placeholder="+1 555 000 0000" />
-          </div>
-        </div>
-        <div class="form-row two">
-          <div class="form-field">
-            <label for="industry">Industry</label>
-            <select id="industry" name="industry" required>
-              <option value="">Select…</option>
-              <option>Construction / contractor</option>
-              <option>Ecommerce</option>
-              <option>Service business</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-field">
-            <label for="monthlySpend">Monthly ad spend</label>
-            <select id="monthlySpend" name="monthlySpend">
-              <option value="">Select…</option>
-              <option>Under $5K</option>
-              <option>$5K – $20K</option>
-              <option>$20K – $50K</option>
-              <option>$50K – $150K</option>
-              <option>$150K+</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-field" style="margin-bottom:16px">
-          <label for="message">What's the situation?</label>
-          <textarea id="message" name="message" placeholder="Tell us briefly what you're trying to fix or scale. No need for a brief — a paragraph or two is enough to start."></textarea>
-        </div>
-        <div class="form-submit">
-          <span class="form-note">We reply inside 24 hours, weekdays. No spam, ever.</span>
-          <button type="submit" class="btn btn-primary" data-magnetic>Send the request <span>→</span></button>
-        </div>
-      </form>
+      <div class="contact-form">
+      <h4>Request a free audit</h4>
+      <p style="font-size:13px;color:var(--paper-2);margin-bottom:24px">Fill out the form below and Hazeem will personally reply within 24 hours, weekdays. No bots, no account managers — just the founder.</p>
+      <div id="systemeio-embed-wrap" style="min-height:400px">
+        <script src="https://hazeem-orm-solution.systeme.io/public/remote/page/441003282c274cd97b0cdd0bbcca5de662646cc6.js"></script>
+      </div>
+    </div>
     </div>
   </section>
 </BaseLayout>
