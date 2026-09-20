@@ -8,6 +8,8 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MechanismPreloader from '../components/MechanismPreloader.astro';
+import WhatsAppWidget from '../components/WhatsAppWidget.astro';
+import FreeAuditPanel from '../components/FreeAuditPanel.astro';
 
 const {
   title = 'PrimeNest Digitals — Marketing With a Mechanism',
@@ -350,5 +352,11 @@ const fullUrl = siteUrl + (canonical === '/' ? '/' : canonical);
 
     })();
   </script>
+  <!-- WhatsApp floating chat widget -->
+  <WhatsAppWidget />
+
+  <!-- Free Audit slide-out panel -->
+  <FreeAuditPanel />
+
 </body>
 </html>
