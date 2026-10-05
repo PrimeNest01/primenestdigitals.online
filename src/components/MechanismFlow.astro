@@ -1,0 +1,433 @@
+---
+// ============================================================
+// MechanismFlow — Animated process visualization
+// Shows how PrimeNest's 4-pillar system turns traffic into growth
+// Scroll-triggered: particles flow + nodes light up
+// ============================================================
+---
+
+<section class="mechanism-section" id="mechanismFlow">
+  <div class="mechanism-inner">
+    <div class="mechanism-header">
+      <div class="section-label">The mechanism</div>
+      <h2 class="section-title">How the system <em>connects</em>.</h2>
+      <p class="mechanism-intro">Four pillars. One flow. Traffic becomes leads, leads become customers, customers become growth.</p>
+    </div>
+
+    <!-- Engine (R mark) at top center -->
+    <div class="mechanism-engine" id="mechanismEngine">
+      <div class="mechanism-engine-ring"></div>
+      <img src="/r-mark.png" alt="PrimeNest Engine" width="56" height="56" class="mechanism-engine-logo" />
+    </div>
+
+    <!-- Flow container -->
+    <div class="mechanism-flow" id="mechanismFlowTrack">
+
+      <!-- Node 1: Acquire -->
+      <div class="flow-node" data-node="1">
+        <div class="flow-node-num">01</div>
+        <div class="flow-node-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
+            <path d="M3 12l4-8 4 8M11 12l4-8 4 8M7 12l4 8 4-8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="flow-node-title">Acquire</h3>
+        <p class="flow-node-desc">Meta + Google Ads. Paid traffic that earns its budget back.</p>
+      </div>
+
+      <!-- Path 1→2 -->
+      <div class="flow-path">
+        <div class="flow-line"></div>
+        <div class="flow-particle" style="animation-delay:0s"></div>
+        <div class="flow-particle" style="animation-delay:0.4s"></div>
+        <div class="flow-particle" style="animation-delay:0.8s"></div>
+        <div class="flow-particle" style="animation-delay:1.2s"></div>
+      </div>
+
+      <!-- Node 2: Convert -->
+      <div class="flow-node" data-node="2">
+        <div class="flow-node-num">02</div>
+        <div class="flow-node-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
+            <path d="M4 4h16v16H4z M4 12h16 M12 4v16" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="flow-node-title">Convert</h3>
+        <p class="flow-node-desc">Web + Funnels. Sites and funnels that turn traffic into pipeline.</p>
+      </div>
+
+      <!-- Path 2→3 -->
+      <div class="flow-path">
+        <div class="flow-line"></div>
+        <div class="flow-particle" style="animation-delay:0.2s"></div>
+        <div class="flow-particle" style="animation-delay:0.6s"></div>
+        <div class="flow-particle" style="animation-delay:1.0s"></div>
+        <div class="flow-particle" style="animation-delay:1.4s"></div>
+      </div>
+
+      <!-- Node 3: Nurture -->
+      <div class="flow-node" data-node="3">
+        <div class="flow-node-num">03</div>
+        <div class="flow-node-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
+            <path d="M12 2v4 M12 18v4 M4.93 4.93l2.83 2.83 M16.24 16.24l2.83 2.83 M2 12h4 M18 12h4 M4.93 19.07l2.83-2.83 M16.24 7.76l2.83-2.83" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="flow-node-title">Nurture</h3>
+        <p class="flow-node-desc">Automation + Email. Flows that qualify leads and recover carts.</p>
+      </div>
+
+      <!-- Path 3→4 -->
+      <div class="flow-path">
+        <div class="flow-line"></div>
+        <div class="flow-particle" style="animation-delay:0.4s"></div>
+        <div class="flow-particle" style="animation-delay:0.8s"></div>
+        <div class="flow-particle" style="animation-delay:1.2s"></div>
+        <div class="flow-particle" style="animation-delay:1.6s"></div>
+      </div>
+
+      <!-- Node 4: Visibility -->
+      <div class="flow-node" data-node="4">
+        <div class="flow-node-num">04</div>
+        <div class="flow-node-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 2v2 M12 20v2 M4.93 4.93l1.41 1.41 M17.66 17.66l1.41 1.41 M2 12h2 M20 12h2 M4.93 19.07l1.41-1.41 M17.66 6.34l1.41-1.41" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="flow-node-title">Visibility</h3>
+        <p class="flow-node-desc">SEO + Reputation. Long-term channels that compound.</p>
+      </div>
+
+    </div>
+
+    <!-- Growth indicator -->
+    <div class="mechanism-growth" id="mechanismGrowth">
+      <span class="mechanism-growth-arrow">↑</span>
+      <span class="mechanism-growth-text">Compounding growth</span>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+/* ── MECHANISM FLOW SECTION ── */
+.mechanism-section{
+  padding:clamp(80px,12vh,140px) var(--pad-x);
+  background:linear-gradient(180deg,var(--black) 0%,var(--black-2) 50%,var(--black) 100%);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+  position:relative;
+}
+.mechanism-inner{
+  max-width:var(--container);
+  margin:0 auto;
+  position:relative;
+}
+.mechanism-header{
+  text-align:center;
+  margin-bottom:64px;
+}
+.mechanism-header .section-label{
+  display:inline-flex;
+  margin-bottom:16px;
+}
+.mechanism-intro{
+  font-size:15px;
+  color:var(--paper);
+  max-width:480px;
+  margin:16px auto 0;
+  line-height:1.6;
+}
+
+/* ── ENGINE (R mark) ── */
+.mechanism-engine{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:48px;
+  position:relative;
+  opacity:0;
+  transform:scale(0.5);
+  transition:opacity 0.6s,transform 0.6s;
+}
+.mechanism-section.active .mechanism-engine{
+  opacity:1;
+  transform:scale(1);
+}
+.mechanism-engine-ring{
+  position:absolute;
+  width:80px;height:80px;
+  border:2px solid var(--purple);
+  border-radius:50%;
+  opacity:0;
+}
+.mechanism-section.active .mechanism-engine-ring{
+  animation:enginePulse 2s 0.5s ease-out infinite;
+}
+@keyframes enginePulse{
+  0%{transform:scale(0.8);opacity:0.6}
+  100%{transform:scale(2);opacity:0}
+}
+.mechanism-engine-logo{
+  width:56px;height:56px;
+  border-radius:14px;
+  filter:drop-shadow(0 0 20px var(--purple-glow));
+  position:relative;
+  z-index:1;
+}
+
+/* ── FLOW TRACK ── */
+.mechanism-flow{
+  display:flex;
+  align-items:stretch;
+  justify-content:space-between;
+  gap:0;
+  position:relative;
+}
+
+/* ── FLOW NODES ── */
+.flow-node{
+  flex:0 0 auto;
+  width:180px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:12px;
+  opacity:0.3;
+  transform:translateY(20px);
+  transition:opacity 0.6s,transform 0.6s;
+}
+.mechanism-section.active .flow-node{
+  opacity:1;
+  transform:translateY(0);
+}
+.mechanism-section.active .flow-node[data-node="1"]{transition-delay:0.3s}
+.mechanism-section.active .flow-node[data-node="2"]{transition-delay:0.6s}
+.mechanism-section.active .flow-node[data-node="3"]{transition-delay:0.9s}
+.mechanism-section.active .flow-node[data-node="4"]{transition-delay:1.2s}
+
+.flow-node-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--purple);
+  letter-spacing:0.1em;
+}
+.flow-node-circle{
+  width:64px;height:64px;
+  border-radius:50%;
+  background:var(--black-2);
+  border:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--paper);
+  position:relative;
+  transition:all 0.4s;
+}
+.mechanism-section.active .flow-node[data-node="1"] .flow-node-circle{
+  border-color:var(--purple);
+  box-shadow:0 0 24px var(--purple-glow);
+  color:var(--purple);
+}
+.mechanism-section.active .flow-node[data-node="2"] .flow-node-circle{
+  border-color:var(--purple);
+  box-shadow:0 0 24px var(--purple-glow);
+  color:var(--purple);
+}
+.mechanism-section.active .flow-node[data-node="3"] .flow-node-circle{
+  border-color:var(--purple);
+  box-shadow:0 0 24px var(--purple-glow);
+  color:var(--purple);
+}
+.mechanism-section.active .flow-node[data-node="4"] .flow-node-circle{
+  border-color:var(--purple);
+  box-shadow:0 0 32px var(--purple-glow),0 0 60px rgba(139,92,246,0.1);
+  color:var(--purple);
+  animation:nodePulse 2s 1.5s infinite;
+}
+@keyframes nodePulse{
+  0%,100%{box-shadow:0 0 24px var(--purple-glow)}
+  50%{box-shadow:0 0 40px var(--purple-glow),0 0 80px rgba(139,92,246,0.15)}
+}
+.flow-node-title{
+  font-family:'Fraunces',serif;
+  font-weight:500;
+  font-size:18px;
+  color:var(--white);
+  letter-spacing:-0.01em;
+}
+.flow-node-desc{
+  font-size:12px;
+  color:var(--paper-2);
+  line-height:1.5;
+  max-width:160px;
+}
+
+/* ── FLOW PATHS + PARTICLES ── */
+.flow-path{
+  flex:1;
+  position:relative;
+  display:flex;
+  align-items:center;
+  min-width:60px;
+  height:64px;
+}
+.flow-line{
+  position:absolute;
+  top:50%;
+  left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--purple) 20%,var(--purple) 80%,transparent);
+  opacity:0.3;
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 0.8s;
+}
+.mechanism-section.active .flow-line{
+  opacity:0.5;
+  transform:scaleX(1);
+  transition-delay:0.4s;
+}
+.flow-particle{
+  position:absolute;
+  top:50%;
+  left:0;
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--purple);
+  box-shadow:0 0 8px var(--purple),0 0 16px var(--purple-glow);
+  transform:translateY(-50%) scale(0);
+  opacity:0;
+}
+.mechanism-section.active .flow-particle{
+  animation:particleFlow 2.5s linear infinite;
+}
+@keyframes particleFlow{
+  0%{left:0;opacity:0;transform:translateY(-50%) scale(0)}
+  10%{opacity:1;transform:translateY(-50%) scale(1)}
+  85%{opacity:1;transform:translateY(-50%) scale(1)}
+  100%{left:100%;opacity:0;transform:translateY(-50%) scale(0.5)}
+}
+
+/* ── GROWTH INDICATOR ── */
+.mechanism-growth{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-top:48px;
+  opacity:0;
+  transition:opacity 0.6s;
+}
+.mechanism-section.active .mechanism-growth{
+  opacity:1;
+  transition-delay:1.5s;
+}
+.mechanism-growth-arrow{
+  font-size:20px;
+  color:var(--purple);
+  animation:growthBounce 1.5s infinite;
+}
+@keyframes growthBounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+.mechanism-growth-text{
+  font-size:13px;
+  font-weight:500;
+  color:var(--paper);
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+}
+
+/* ── MOBILE ── */
+@media(max-width:840px){
+  .mechanism-flow{
+    flex-direction:column;
+    gap:0;
+  }
+  .flow-node{
+    width:100%;
+    flex-direction:row;
+    text-align:left;
+    align-items:center;
+    gap:16px;
+    padding:16px 0;
+  }
+  .flow-node-circle{
+    width:48px;height:48px;
+    flex-shrink:0;
+  }
+  .flow-node-num{
+    position:absolute;
+    left:0;
+  }
+  .flow-node-title{
+    font-size:16px;
+  }
+  .flow-node-desc{
+    max-width:none;
+    font-size:11px;
+  }
+  .flow-path{
+    width:2px;
+    height:40px;
+    min-width:0;
+    margin-left:32px;
+    align-self:flex-start;
+  }
+  .flow-line{
+    top:0;bottom:0;
+    left:50%;right:auto;
+    width:1px;height:100%;
+    background:linear-gradient(180deg,transparent,var(--purple) 20%,var(--purple) 80%,transparent);
+    transform:scaleY(0);
+    transform-origin:top;
+  }
+  .mechanism-section.active .flow-line{
+    transform:scaleY(1);
+  }
+  .flow-particle{
+    top:0;left:50%;
+    transform:translateX(-50%) scale(0);
+  }
+  .mechanism-section.active .flow-particle{
+    animation:particleFlowMobile 2.5s linear infinite;
+  }
+  @keyframes particleFlowMobile{
+    0%{top:0;opacity:0;transform:translateX(-50%) scale(0)}
+    10%{opacity:1;transform:translateX(-50%) scale(1)}
+    85%{opacity:1;transform:translateX(-50%) scale(1)}
+    100%{top:100%;opacity:0;transform:translateX(-50%) scale(0.5)}
+  }
+  .mechanism-engine{margin-bottom:32px}
+  .flow-node[data-node="4"]{
+    padding-bottom:0;
+  }
+}
+
+@media(max-width:600px){
+  .flow-node-circle{width:40px;height:40px}
+  .flow-node-circle svg{width:22px;height:22px}
+  .flow-path{margin-left:24px;height:32px}
+  .flow-node{padding:12px 0}
+}
+</style>
+
+<script>
+  // Scroll-triggered activation
+  var mechanismSection = document.getElementById('mechanismFlow');
+  if (mechanismSection) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          mechanismSection.classList.add('active');
+          observer.unobserve(mechanismSection);
+        }
+      });
+    }, { threshold: 0.25, rootMargin: '0px 0px -100px 0px' });
+    observer.observe(mechanismSection);
+  }
+</script>
